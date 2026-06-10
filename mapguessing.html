@@ -1,0 +1,4972 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess The TF2 Map</title>
+    <link rel="shortcut icon" href="assets/icons/tf2.png">
+    <style>
+        body {
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif, sans-serif;
+        }
+
+        h1 {
+            color: black;
+            text-align: center;
+        }
+
+        h3 {
+            text-align: center;
+            font-family: Arial;
+        }
+
+        h5 {
+            text-align: center;
+            font-family: Arial;
+        }
+
+        h4 {
+            text-align: center;
+        }
+
+        h6 {
+            color: white;
+           }
+
+        input {
+            font-weight: bold;
+            text-align: center;
+            color: black;
+            border-color: black;
+            background-color: tan;
+        }
+
+        button {
+                    width: 300px;
+                    border-radius: 50px;
+                    float: center;
+                    margin-right: 10px;
+                    border-color: black;
+                    background-color: green;
+                    color: white;
+                    align-self: center;
+                    font-weight: bold;
+                }
+                
+    </style>
+</head>
+
+<body>
+    <!-- <h1>This is the first game I made with JavaScript.</h1>
+    <a href="home.html">Back to main page</a>
+    <h2> </h2> 
+    <a href="game_fruit.html">Check out the fruit version</a>
+    <h1> </h1> -->
+    <a href="index.html">Go Back</a>
+    <h1>What is the name of this Team Fortress 2 map?</h1>
+
+    <img class="photo" id="tfdisplay"
+        style="display: block;-webkit-user-select: none;margin: auto;cursor: zoom-in;background-color: hsl(0, 0%, 90%);transition: background-color 300ms;"
+        src="assets/game/error.jpg" width="772" height="434">
+    </img>
+    <h3 id="tpd">
+        Your Total Points: 0
+    </h3>
+    <h5 id="guessesleft">
+        You have 8 guesses left!
+    </h5>
+    <h4>
+        <input id="inp_inname" value="" autocomplete="off" spellcheck="false" role="combobox" aria-controls="matches"
+            aria-expanded="true" aria-live="polite" placeholder="Ingame Name">
+        <input id="inp_filename" aria-disabled="false" value="" autocomplete="off" spellcheck="false" role="combobox"
+            aria-controls="matches" aria-expanded="true" aria-live="polite" placeholder="File Name">
+        </input>
+    </h4>
+    <h4>
+        <input id="inp_modename" aria-disabled="false" value="" autocomplete="off" spellcheck="false" role="combobox"
+            aria-controls="matches" aria-expanded="true" aria-live="polite" placeholder="Gamemode">
+        <input id="inp_daterel" aria-disabled="false" value="" autocomplete="off" spellcheck="false" role="combobox"
+            aria-controls="matches" aria-expanded="true" aria-live="polite" placeholder="Date Released">
+        </input>
+    </h4>
+
+    <h5 id="inscore"></h5>
+    <h5 id="filescore"></h5>
+    <h5 id="modescore"></h5>
+    <h5 id="datescore"></h5>
+
+    <h4>
+        <button id="butt" onclick="pointstuff()" onmouseover="buttoncolor1()" onmouseleave="buttoncolor2()"> Submit
+        </button>
+    </h4>
+
+    
+    <h3>
+        Settings
+    </h3>
+    <h3>
+        <button id="buttsetting2" onclick="ValveOFF()" onmouseover="valvebc1()" onmouseleave="valvebc2()"> Valve Maps </button>
+        <button id="buttsetting1" onclick="CommunityOFF()" onmouseover="communitybc1()" onmouseleave="communitybc2()"> Community Maps </button>
+    </h3>
+    <h3>
+        <button id="buttnormal" onclick="normalOFF()" onmouseover="normalbc1()" onmouseleave="normalbc2()"> Normal Maps </button>
+        <button id="butthalloween" onclick="halloweenOFF()" onmouseover="halloweenbc1()" onmouseleave="halloweenbc2()"> Halloween Maps </button>
+        <button id="buttchristmas" onclick="christmasOFF()" onmouseover="christmasbc1()" onmouseleave="christmasbc2()"> Christmas Maps </button>
+    </h3>
+
+
+    <h3>Please keep all letters lowercase.
+        <style>
+        </style>
+    </h3>
+    <h3>Please type dates out like this: january 1, 2010</h3>
+    <h3>Do not include '.bsp' when typing out the file name.</h3>
+    <a href="https://wiki.teamfortress.com/wiki/Main_Page">Images taken from the Offcial TF2 Wiki</a>
+    <p>
+        Gamemodes:
+    </p>
+    <p>arena, attack/defend, capture the flag, control point, Hold The Flag, king of the hill, mannpower, mann vs machine, medieval,
+        pass time, payload, payload race, player destruction, robot destruction, special delivery, territorial control,
+        training, tug of war, versus saxton hale, zombie infection, other.</p>
+    <h6>
+        =
+    </h6>
+    
+    <p>
+        On correct answer:
+    </p>
+    <p>
+        Ingame Name = +5 points
+    </p>
+    <p>
+        Gamemode = +5 points
+    </p>
+    <p>
+        File Name = +6 points
+    </p>
+    <p>
+        Date Released = +10 points
+    </p>
+    <h6>
+        =
+    </h6>
+    
+    <p>
+        On incorrect answer:
+    </p>
+    <p>
+        Ingame Name = -10 points
+    </p>
+    <p>
+        Gamemode = -6 points
+    </p>
+    <p>
+        File Name = -5 points
+    </p>
+    <p>
+        Date Released = -2 points
+    </p>
+
+
+    <script>
+
+        var loopy = true
+
+        var totalshow = "Your Total Points: 0"
+        var totalguess = "You have 8 guesses left!"
+
+
+        var CommunityMaps = true
+        var ValveMaps = true
+
+        var halloween = true
+        var normal = true
+        var christmas = true
+
+        // boos
+        var ctf2fort = true
+        var plupward = true
+        var addarkmarsh = true
+        var trtarget = true
+        var kothlakeside = true
+        var passtemplate = true
+        var ziblazehattan = true
+        var pdatomsmash = true
+        var arbadlands = true
+        var ctfapplejack = true
+        var adfortezza = true
+        var meddegrootkeep = true
+        var cpgullywash = true
+        var plrhacksaw = true
+        var plcashworks = true
+        var kothslime = true
+        var adaltitude = true
+        var cpcloak = true
+        var aroffblast = true
+        var ctfhelltrain = true
+        var adsnowplow = true
+        var medburghausen = true
+        var cpstandin = true
+        var cpwell = true
+        var kothsuijin = true
+        var mpthundermountain = true
+        var mvmdecoy = true
+        var passdistrict = true
+        var plbarnblitz = true
+        var plrnightfall = true
+        var pdfarmageddon = true
+        var rdasteroid = true
+        var sddoomsday = true
+        var tchydro = true
+        var trdustbowl = true
+        var towdynamite = true
+        var vshnucleus = true
+        var ziatoll = true
+        var mvmexample = true
+        var arravine = true
+        var ctfdoublefrost = true
+        var adjunction = true
+        var adgorge = true
+        var medsandcastle = true
+        var cpfastlane = true
+        var cppowerhouse = true
+        var kothcascade = true
+        var kothmegaton = true
+        var kothtoxic = true
+        var mpgorge = true
+        var mvmcoaltown = true
+        var passtimbertown = true
+        var plbadwater =  true
+        var plembargo = true
+        var plodyssey = true
+        var plthundermountain = true
+        var pdmannsylvania = true
+        var sdcoc = true
+        var vshmaul = true
+        var zisanitarium = true
+        var othdevtest = true
+        var arbyre = true
+        var ctfcrasher = true
+        var adcarrier = true
+        var adhardwood = true
+        var adsteel = true
+        var cp5gorge = true
+        var cpsnakewater = true
+        var kothking = true
+        var kothnucleus = true
+        var kotheyeaduct = true
+        var mphellfire = true
+        var mvmrottenburg = true
+        var passbrickyard = true
+        var plborneo = true
+        var plcorruption = true
+        var plprecipice = true
+        var plwutville = true
+        var plrbanana = true
+        var pdgalleria = true
+        var vshskirmish = true
+        var zimurky = true
+        var othitemtest = true
+        var argraveyard = true
+        var ctfsawmill = true
+        var adfrostwatch = true
+        var adhadal = true
+        var admossrock = true
+        var cpcoldfront = true
+        var cpmetalworks = true
+        var cpyukon = true
+        var kothcachoeira = true
+        var kothmegalo = true
+        var kothslasher = true
+        var mpfoundry = true
+        var mvmmannhattan = true
+        var plcactus = true
+        var plpatagonia = true
+        var plvenice = true
+        var plrhightower = true
+        var pdbottemlesspit =  true
+        var vshdistillery = true
+        var ziwoods = true
+        var othbackground01 = true
+        var argranary = true
+        var ctfdoublecross = true
+        var adhaarp = true
+        var adspookeyridge = true
+        var cpfreakyfair = true
+        var cpvanguard = true
+        var kothlaughter = true
+        var kothovercast = true
+        var kothviaduct = true
+        var mvmghosttown = true
+        var plbrimstone = true
+        var plphoenix = true
+        var plhasslecastle = true
+        var plpipeline = true
+        var pdcursedcove = true
+        var vshoutburst = true
+        var zihl2e1 = true
+        var othcloak = true
+        var arnucleus = true
+        var ctfturbine = true
+        var addustbowl = true
+        var adovergrown = true
+        var cpbadlands = true
+        var kothhighpass = true
+        var kothrotunda = true
+        var mvmmannworks = true
+        var plpier = true
+        var plrcutyoass = true
+        var pdselbyen = true
+        var vshtinyrock = true
+        var arsawmill = true
+        var ctflandfall = true
+        var adegypt = true
+        var admountainlab = true
+        var adsulfur = true
+        var cpcanaveral = true
+        var kothbrazil = true
+        var kothmoonshine = true
+        var mvmbigrock = true
+        var plcamber = true
+        var plrumford = true
+        var plrbonesaw = true
+        var pdcircus = true
+        var arlumberyard = true
+        var ctfwell = true
+        var adgorgeevent = true
+        var plemerge = true
+        var cpfoundry = true
+        var kothhmmbagel = true
+        var kothsharkbay = true
+        var plbloodwater = true
+        var plchaos = true
+        var pdwatergate = true
+        var arwell = true
+        var ctfpelican = true
+        var adgravelpit = true
+        var admanor = true
+        var cpsunshine = true
+        var kothkrampus = true
+        var kothscarysawmill = true
+        var plfrontier = true
+        var plspineyard = true
+        var plrhelltower = true
+        var pdsnowville = true
+        var arperks = true
+        var ctffrosty = true
+        var adcoalpit = true
+        var cpreckoner = true
+        var kothbadlands = true
+        var kothsnowtower = true
+        var plenclosure = true
+        var plhoodoo = true
+        var pdmonsters = true
+        var arwatch = true
+        var ctfpenguin = true
+        var aderebus = true
+        var cpgranary = true
+        var kothharvest = true
+        var kothsinthetic = true
+        var plterror = true
+        var plchilly = true
+        var ctfenibrut = true
+        var adlavapit = true
+        var cpprocess = true
+        var kothghostfort = true
+        var plfrostcliff = true
+        var ctfsnowfall = true
+        var adbrew = true
+        var cpsinshine = true
+        var kothlazarus = true
+        var plghoulpit = true
+        var ctf2fortin = true
+        var adyetipark = true
+        var cpfreight = true
+        var kothmapleridge = true
+        var plbreadspace = true
+        var kothmoldergrove = true
+        var kothharvestevent = true
+        var plsnowycoast = true
+        var kothsawmill = true
+        var plgoldrush = true
+        var kothwall = true
+        var plpolar = true
+        var kothprobed = true
+        var plswiftwater = true
+        var plgravestone = true
+        var ctfpressure = true
+        var kothasshole = true
+        var adconifer = true
+        var kothblowout = true
+        var adcargo = true
+        var adfulgur = true
+        var kothsmol = true
+        var kothlaughterspookyless =  true
+        var plfish = true
+        var plsitdown = true
+        var arenaafterlife = true
+        var cpcower = true
+        var ctfdevilcross = true
+        var htfmarshlands = true
+        var kothduskroof = true
+        var kothabbey = true
+        var cpplgavle = true
+        var plrmatterhorn = true
+        var pdcringe = true
+        var ctfwindy = true
+        var kothwhyanotherreskin = true
+        // boos
+
+        var totalmaps = 231
+        var endsuffering = true
+
+        var inname = "Nope"
+        var filename = "Nope"
+        var modename = "Nope"
+        var daterel = "Nope"
+
+        var inname_exp = "Nope1"
+        var filename_exp = "Nope1"
+        var modename_exp = "Nope1"
+        var daterel_exp = "Nope1"
+
+        var point_inname = 0
+        var point_filename = 0
+        var point_modename = 0
+        var point_daterel = 0
+
+        var total_points = 0
+        var point_summer = 0
+
+
+        var ingood = 0
+        var inbad = 0
+        var intotal = 0
+
+        var filegood = 0
+        var filebad = 0
+        var filetotal = 0
+
+        var modegood = 0
+        var modebad = 0
+        var modetotal = 0
+
+        var dategood = 0
+        var datebad = 0
+        var datetotal = 0
+
+        buttonfix()
+        pickmap()
+
+        function buttonfix() {
+            document.getElementById("butt").setAttribute("onclick", "javascript: pointstuff();");
+            document.getElementById("buttsetting1").setAttribute("onclick", "javascript: CommunityOFF();");
+            document.getElementById("buttsetting2").setAttribute("onclick", "javascript: ValveOFF();");
+            document.getElementById("buttnormal").setAttribute("onclick", "javascript: normalOFF();");
+            document.getElementById("butthalloween").setAttribute("onclick", "javascript: halloweenOFF();");
+            document.getElementById("buttchristmas").setAttribute("onclick", "javascript: christmasOFF();");
+
+            document.getElementById("butt").setAttribute("onmouseover", "javascript: buttoncolor1();");
+            document.getElementById("butt").setAttribute("onmouseleave", "javascript: buttoncolor2();");
+            document.getElementById("buttsetting2").setAttribute("onmouseover", "javascript: valvebc1();");
+            document.getElementById("buttsetting2").setAttribute("onmouseleave", "javascript: valvebc2();");
+            document.getElementById("buttsetting1").setAttribute("onmouseover", "javascript: communitybc1();");
+            document.getElementById("buttsetting1").setAttribute("onmouseleave", "javascript: communitybc2();");
+            document.getElementById("buttnormal").setAttribute("onmouseover", "javascript: normalbc1();");
+            document.getElementById("buttnormal").setAttribute("onmouseleave", "javascript: normalbc2();");
+            document.getElementById("butthalloween").setAttribute("onmouseover", "javascript: halloweenbc1();");
+            document.getElementById("butthalloween").setAttribute("onmouseleave", "javascript: halloweenbc2();");
+            document.getElementById("buttchristmas").setAttribute("onmouseover", "javascript: christmasbc1();");
+            document.getElementById("buttchristmas").setAttribute("onmouseleave", "javascript: christmasbc2();");
+
+        }
+
+        function normalON() {
+
+            normal = true
+            document.getElementById("buttnormal").setAttribute("onclick", "javascript: normalOFF();");
+            document.getElementById("buttnormal").setAttribute("onmouseover", "javascript: normalbc1();");
+            document.getElementById("buttnormal").setAttribute("onmouseleave", "javascript: normalbc2();");
+            document.getElementById("buttnormal").style.backgroundColor = "rgb(78, 157, 78)";
+
+            playagain()
+            Setsetting()
+        }
+        function normalOFF() {
+
+            normal = false
+            document.getElementById("buttnormal").setAttribute("onclick", "javascript: normalON();");
+            document.getElementById("buttnormal").setAttribute("onmouseover", "javascript: normalbc3();");
+            document.getElementById("buttnormal").setAttribute("onmouseleave", "javascript: normalbc4();");
+            document.getElementById("buttnormal").style.backgroundColor = "rgb(167, 52, 52)";
+
+            playagain()
+            Setsetting()
+        }
+        function normalbc1() {
+            document.getElementById("buttnormal").style.backgroundColor = "rgb(78, 157, 78)";
+        }
+
+        function normalbc2() {
+            document.getElementById("buttnormal").style.backgroundColor = "green";
+        }
+
+        function normalbc3() {
+            document.getElementById("buttnormal").style.backgroundColor = "rgb(167, 52, 52)";
+        }
+
+        function normalbc4() {
+            document.getElementById("buttnormal").style.backgroundColor = "rgb(121, 10, 10)";
+        }
+
+
+
+        function halloweenON() {
+
+            halloween = true
+            document.getElementById("butthalloween").setAttribute("onclick", "javascript: halloweenOFF();");
+            document.getElementById("butthalloween").setAttribute("onmouseover", "javascript: halloweenbc1();");
+            document.getElementById("butthalloween").setAttribute("onmouseleave", "javascript: halloweenbc2();");
+            document.getElementById("butthalloween").style.backgroundColor = "rgb(78, 157, 78)";
+
+            playagain()
+            Setsetting()
+        }
+        function halloweenOFF() {
+
+            halloween = false
+            document.getElementById("butthalloween").setAttribute("onclick", "javascript: halloweenON();");
+            document.getElementById("butthalloween").setAttribute("onmouseover", "javascript: halloweenbc3();");
+            document.getElementById("butthalloween").setAttribute("onmouseleave", "javascript: halloweenbc4();");
+            document.getElementById("butthalloween").style.backgroundColor = "rgb(167, 52, 52)";
+
+            playagain()
+            Setsetting()
+        }
+        function halloweenbc1() {
+            document.getElementById("butthalloween").style.backgroundColor = "rgb(78, 157, 78)";
+        }
+
+        function halloweenbc2() {
+            document.getElementById("butthalloween").style.backgroundColor = "green";
+        }
+
+        function halloweenbc3() {
+            document.getElementById("butthalloween").style.backgroundColor = "rgb(167, 52, 52)";
+        }
+
+        function halloweenbc4() {
+            document.getElementById("butthalloween").style.backgroundColor = "rgb(121, 10, 10)";
+        }
+
+
+        function christmasON() {
+
+            christmas = true
+            document.getElementById("buttchristmas").setAttribute("onclick", "javascript: christmasOFF();");
+            document.getElementById("buttchristmas").setAttribute("onmouseover", "javascript: christmasbc1();");
+            document.getElementById("buttchristmas").setAttribute("onmouseleave", "javascript: christmasbc2();");
+            document.getElementById("buttchristmas").style.backgroundColor = "rgb(78, 157, 78)";
+
+            playagain()
+            Setsetting()
+        }
+        function christmasOFF() {
+
+            christmas = false
+            document.getElementById("buttchristmas").setAttribute("onclick", "javascript: christmasON();");
+            document.getElementById("buttchristmas").setAttribute("onmouseover", "javascript: christmasbc3();");
+            document.getElementById("buttchristmas").setAttribute("onmouseleave", "javascript: christmasbc4();");
+            document.getElementById("buttchristmas").style.backgroundColor = "rgb(167, 52, 52)";
+
+            playagain()
+            Setsetting()
+        }
+        function christmasbc1() {
+            document.getElementById("buttchristmas").style.backgroundColor = "rgb(78, 157, 78)";
+        }
+
+        function christmasbc2() {
+            document.getElementById("buttchristmas").style.backgroundColor = "green";
+        }
+
+        function christmasbc3() {
+            document.getElementById("buttchristmas").style.backgroundColor = "rgb(167, 52, 52)";
+        }
+
+        function christmasbc4() {
+            document.getElementById("buttchristmas").style.backgroundColor = "rgb(121, 10, 10)";
+        }
+
+
+
+        function ValveON() {
+
+            ValveMaps = true
+            document.getElementById("buttsetting2").setAttribute("onclick", "javascript: ValveOFF();");
+            document.getElementById("buttsetting2").setAttribute("onmouseover", "javascript: valvebc1();");
+            document.getElementById("buttsetting2").setAttribute("onmouseleave", "javascript: valvebc2();");
+            document.getElementById("buttsetting2").style.backgroundColor = "rgb(78, 157, 78)";
+
+            playagain()
+            Setsetting()
+        }
+        function ValveOFF() {
+
+            ValveMaps = false
+            document.getElementById("buttsetting2").setAttribute("onclick", "javascript: ValveON();");
+            document.getElementById("buttsetting2").setAttribute("onmouseover", "javascript: valvebc3();");
+            document.getElementById("buttsetting2").setAttribute("onmouseleave", "javascript: valvebc4();");
+            document.getElementById("buttsetting2").style.backgroundColor = "rgb(167, 52, 52)";
+
+            playagain()
+            Setsetting()
+        }
+        function valvebc1() {
+            document.getElementById("buttsetting2").style.backgroundColor = "rgb(78, 157, 78)";
+        }
+
+        function valvebc2() {
+            document.getElementById("buttsetting2").style.backgroundColor = "green";
+        }
+
+        function valvebc3() {
+            document.getElementById("buttsetting2").style.backgroundColor = "rgb(167, 52, 52)";
+        }
+
+        function valvebc4() {
+            document.getElementById("buttsetting2").style.backgroundColor = "rgb(121, 10, 10)";
+        }
+
+
+
+
+        function CommunityON() {
+
+            CommunityMaps = true
+            document.getElementById("buttsetting1").setAttribute("onclick", "javascript: CommunityOFF();");
+            document.getElementById("buttsetting1").setAttribute("onmouseover", "javascript: communitybc1();");
+            document.getElementById("buttsetting1").setAttribute("onmouseleave", "javascript: communitybc2();");
+            document.getElementById("buttsetting1").style.backgroundColor = "rgb(78, 157, 78)";
+
+            playagain()
+            Setsetting()
+        }
+        function CommunityOFF() {
+
+            CommunityMaps = false
+            document.getElementById("buttsetting1").setAttribute("onclick", "javascript: CommunityON();");
+            document.getElementById("buttsetting1").setAttribute("onmouseover", "javascript: communitybc3();");
+            document.getElementById("buttsetting1").setAttribute("onmouseleave", "javascript: communitybc4();");
+            document.getElementById("buttsetting1").style.backgroundColor = "rgb(167, 52, 52)";
+
+            playagain()
+            Setsetting()
+        }
+        function communitybc1() {
+            document.getElementById("buttsetting1").style.backgroundColor = "rgb(78, 157, 78)";
+        }
+
+        function communitybc2() {
+            document.getElementById("buttsetting1").style.backgroundColor = "green";
+        }
+
+        function communitybc3() {
+            document.getElementById("buttsetting1").style.backgroundColor = "rgb(167, 52, 52)";
+        }
+
+        function communitybc4() {
+            document.getElementById("buttsetting1").style.backgroundColor = "rgb(121, 10, 10)";
+        }
+
+
+
+
+
+
+
+        function buttoncolor1() {
+            document.getElementById("butt").style.backgroundColor = "rgb(78, 157, 78)";
+        }
+
+        function buttoncolor2() {
+            document.getElementById("butt").style.backgroundColor = "green";
+        }
+
+        function buttoncolor3() {
+            document.getElementById("butt").style.backgroundColor = "rgb(71, 71, 180)";
+        }
+
+        function buttoncolor4() {
+            document.getElementById("butt").style.backgroundColor = "rgb(0, 0, 200)";
+        }
+
+
+
+        function buttonstylereset() {
+            document.getElementById("butt").style.width = "300px"
+            document.getElementById("butt").style.borderRadius = "50px"
+            document.getElementById("butt").style.float = "center"
+            document.getElementById("butt").style.marginRight = "10px"
+            document.getElementById("butt").style.borderColor = "black"
+            document.getElementById("butt").style.color = "white"
+            document.getElementById("butt").style.alignSelf = "center"
+            document.getElementById("butt").style.fontWeight = "bold"
+        }
+
+
+        function pickmap() { // =======================00000000
+
+            if (totalmaps == 1) {
+                totalguess = "You have " + totalmaps + " map left!"
+                document.getElementById("guessesleft").textContent = totalguess
+            }
+            else {
+                totalguess = "You have " + totalmaps + " maps left!"
+                document.getElementById("guessesleft").textContent = totalguess
+            }
+
+            function randy(min, max) {
+                min = Math.ceil(min);
+                max = Math.floor(max);
+                return Math.floor(Math.random() * (max - min) + min);
+            }
+
+            var ran = randy(1, 232)
+            console.log("random number was " + ran)
+
+            loopy = true
+            endsuffering = true
+
+            if (totalmaps == 0) {
+                loopy = false
+            }
+
+            while (loopy == true) {
+                if (ran == 1 && ctf2fort == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/ctf2fort.png"
+                    inname_exp = "2fort"
+                    filename_exp = "ctf_2fort"
+                    modename_exp = "capture the flag"
+                    daterel_exp = "october 10, 2007"
+                    loopy = false
+                    ctf2fort = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 1 && ctf2fort == false) {
+                    ran = ran + 1
+                    endsuffering = false
+                }
+
+                if (ran == 2 && plupward == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/plupward.png"
+                    inname_exp = "upward"
+                    filename_exp = "pl_upward"
+                    modename_exp = "payload"
+                    daterel_exp = "july 8, 2010"
+                    loopy = false
+                    plupward = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 2 && plupward == false) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 3 && addarkmarsh == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/addarkmarsh.png"
+                    inname_exp = "darkmarsh"
+                    filename_exp = "cp_darkmarsh"
+                    modename_exp = "attack/defend"
+                    daterel_exp = "october 10, 2024"
+                    loopy = false
+                    addarkmarsh = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 3 && addarkmarsh == false) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 4 && trtarget == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/trtarget.png"
+                    inname_exp = "target"
+                    filename_exp = "tr_target"
+                    modename_exp = "training"
+                    daterel_exp = "june 10, 2010"
+                    loopy = false
+                    trtarget = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 4 && trtarget == false) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 5 && kothlakeside == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/kothlakeside.png"
+                    inname_exp = "lakeside"
+                    filename_exp = "koth_lakeside_final"
+                    modename_exp = "king of the hill"
+                    daterel_exp = "february 24, 2011"
+                    loopy = false
+                    kothlakeside = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 5 && kothlakeside == false) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 6 && passtemplate == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/passtemplate.png"
+                    inname_exp = "template"
+                    filename_exp = "pass_template"
+                    modename_exp = "pass time"
+                    daterel_exp = "november 6, 2015"
+                    loopy = false
+                    passtemplate = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 6 && passtemplate == false) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 7 && ziblazehattan == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/ziblazehattan.png"
+                    inname_exp = "blazehattan"
+                    filename_exp = "zi_blazehattan"
+                    modename_exp = "zombie infection"
+                    daterel_exp = "october 10, 2024"
+                    loopy = false
+                    ziblazehattan = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 7 && ziblazehattan == false) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 8 && arbadlands == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/arbadlands.jpg"
+                    inname_exp = "badlands"
+                    filename_exp = "arena_badlands"
+                    modename_exp = "arena"
+                    daterel_exp = "august 19, 2008"
+                    loopy = false
+                    arbadlands = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 8) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 9 && ctfapplejack == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/ctfapplejack.png"
+                    inname_exp = "applejack"
+                    filename_exp = "ctf_applejack"
+                    modename_exp = "capture the flag"
+                    daterel_exp = "july 18, 2024"
+                    loopy = false
+                    ctfapplejack = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 9) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 10 && adfortezza == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/adfortezza.png"
+                    inname_exp = "fortezza"
+                    filename_exp = "cp_fortezza"
+                    modename_exp = "attack/defend"
+                    daterel_exp = "december 11, 2024"
+                    loopy = false
+                    adfortezza = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 10) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 11 && meddegrootkeep == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/meddegrootkeep.png"
+                    inname_exp = "degroot keep"
+                    filename_exp = "cp_degrootkeep"
+                    modename_exp = "medieval"
+                    daterel_exp = "december 17, 2010"
+                    loopy = false
+                    meddegrootkeep = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 11) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 12 && cpgullywash == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/cpgullywash.png"
+                    inname_exp = "gullywash"
+                    filename_exp = "cp_gullywash_final1"
+                    modename_exp = "control point"
+                    daterel_exp = "october 13, 2011"
+                    loopy = false
+                    cpgullywash = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 12) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 13 && plrhacksaw == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/plrhacksaw.png"
+                    inname_exp = "hacksaw"
+                    filename_exp = "plr_hacksaw"
+                    modename_exp = "payload race"
+                    daterel_exp = "december 7, 2023"
+                    loopy = false
+                    plrhacksaw = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 13) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 14 && plcashworks == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/plcashworks.png"
+                    inname_exp = "cashworks"
+                    filename_exp = "pl_cashworks"
+                    modename_exp = "payload"
+                    daterel_exp = "july 12, 2023"
+                    loopy = false
+                    plcashworks = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 14) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 15 && kothslime == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/kothslime.jpg"
+                    inname_exp = "slime"
+                    filename_exp = "koth_slime"
+                    modename_exp = "king of the hill"
+                    daterel_exp = "october 9, 2023"
+                    loopy = false
+                    kothslime = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 15) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 16 && adaltitude == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/adaltitude.png"
+                    inname_exp = "altitude"
+                    filename_exp = "cp_altitude"
+                    modename_exp = "attack/defend"
+                    daterel_exp = "december 2, 2021"
+                    loopy = false
+                    adaltitude = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 16) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 17 && cpcloak == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/cpcloak.jpg"
+                    inname_exp = "cloak"
+                    filename_exp = "cp_cloak"
+                    modename_exp = "control point"
+                    daterel_exp = "december 17, 2010"
+                    loopy = false
+                    cpcloak = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 17) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 18 && aroffblast == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/aroffblast.png"
+                    inname_exp = "offblast"
+                    filename_exp = "arena_offblast_final"
+                    modename_exp = "arena"
+                    daterel_exp = "august 13, 2009"
+                    loopy = false
+                    aroffblast = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 18) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 19 && ctfhelltrain == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/ctfhelltrain.png"
+                    inname_exp = "helltrain"
+                    filename_exp = "ctf_helltrain_event"
+                    modename_exp = "capture the flag"
+                    daterel_exp = "october 5, 2022"
+                    loopy = false
+                    ctfhelltrain = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 19) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 20 && adsnowplow == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/adsnowplow.jpg"
+                    inname_exp = "snowplow"
+                    filename_exp = "cp_snowplow"
+                    modename_exp = "attack/defend"
+                    daterel_exp = "july 2, 2015"
+                    loopy = false
+                    adsnowplow = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 20) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 21 && medburghausen == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/medburghausen.png"
+                    inname_exp = "burghausen"
+                    filename_exp = "cp_burghausen"
+                    modename_exp = "medieval"
+                    daterel_exp = "july 18, 2024"
+                    loopy = false
+                    medburghausen = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 21) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 22 && cpstandin == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/cpstandin.png"
+                    inname_exp = "standin"
+                    filename_exp = "cp_standin_final"
+                    modename_exp = "control point"
+                    daterel_exp = "july 10, 2013"
+                    loopy = false
+                    cpstandin = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 22) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 23 && cpwell == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/cpwell.png"
+                    inname_exp = "well"
+                    filename_exp = "cp_well"
+                    modename_exp = "control point"
+                    daterel_exp = "october 10, 2007"
+                    loopy = false
+                    cpwell = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 23) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 24 && kothsuijin == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/kothsuijin.jpg"
+                    inname_exp = "suijin"
+                    filename_exp = "koth_suijin"
+                    modename_exp = "king of the hill"
+                    daterel_exp = "july 2, 2015"
+                    loopy = false
+                    kothsuijin = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 24) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 25 && mpthundermountain == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/mpthundermountain.jpg"
+                    inname_exp = "thunder mountain"
+                    filename_exp = "ctf_thundermountain"
+                    modename_exp = "mannpower"
+                    daterel_exp = "march 12, 2015"
+                    loopy = false
+                    mpthundermountain = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 25) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 26 && mvmdecoy == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/mvmdecoy.png"
+                    inname_exp = "decoy"
+                    filename_exp = "mvm_decoy"
+                    modename_exp = "mann vs machine"
+                    daterel_exp = "august 15, 2012"
+                    loopy = false
+                    mvmdecoy = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 26) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 27 && passdistrict == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/passdistrict.jpg"
+                    inname_exp = "district"
+                    filename_exp = "pass_district"
+                    modename_exp = "pass time"
+                    daterel_exp = "july 7, 2016"
+                    loopy = false
+                    passdistrict = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 27) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 28 && plbarnblitz == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/plbarnblitz.png"
+                    inname_exp = "barnblitz"
+                    filename_exp = "pl_barnblitz"
+                    modename_exp = "payload"
+                    daterel_exp = "june 23, 2011"
+                    loopy = false
+                    plbarnblitz = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 28) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 29 && plrnightfall == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/plrnightfall.png"
+                    inname_exp = "nightfall"
+                    filename_exp = "plr_nightfall_final"
+                    modename_exp = "payload race"
+                    daterel_exp = "february 24, 2011"
+                    loopy = false
+                    plrnightfall = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 29) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 30 && pdfarmageddon == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/pdfarmageddon.png"
+                    inname_exp = "farmageddon"
+                    filename_exp = "pd_farmageddon"
+                    modename_exp = "player destruction"
+                    daterel_exp = "october 5, 2021"
+                    loopy = false
+                    pdfarmageddon = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 30) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 31 && rdasteroid == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/rdasteroid.png"
+                    inname_exp = "asteroid"
+                    filename_exp = "rd_asteroid"
+                    modename_exp = "robot destruction"
+                    daterel_exp = "july 8, 2014"
+                    loopy = false
+                    rdasteroid = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 31) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 32 && sddoomsday == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/sddoomsday.png"
+                    inname_exp = "doomsday"
+                    filename_exp = "sd_doomsday"
+                    modename_exp = "special delivery"
+                    daterel_exp = "june 27, 2012"
+                    loopy = false
+                    sddoomsday = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 32) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 33 && tchydro == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/tchydro.png"
+                    inname_exp = "hydro"
+                    filename_exp = "tc_hydro"
+                    modename_exp = "territorial control"
+                    daterel_exp = "october 10, 2007"
+                    loopy = false
+                    tchydro = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 33) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 34 && trdustbowl == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/trdustbowl.png"
+                    inname_exp = "dustbowl"
+                    filename_exp = "tr_dustbowl"
+                    modename_exp = "training"
+                    daterel_exp = "june 10, 2010"
+                    loopy = false
+                    trdustbowl = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 34) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 35 && towdynamite == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/towdynamite.png"
+                    inname_exp = "dynamite"
+                    filename_exp = "tow_dynamite"
+                    modename_exp = "tug of war"
+                    daterel_exp = "october 10, 2024"
+                    loopy = false
+                    towdynamite = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 35) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 36 && vshnucleus == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/vshnucleus.png"
+                    inname_exp = "nucleus vsh"
+                    filename_exp = "vsh_nucleus"
+                    modename_exp = "versus saxton hale"
+                    daterel_exp = "july 12, 2023"
+                    loopy = false
+                    vshnucleus = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 36) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 37 && ziatoll == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/ziatoll.png"
+                    inname_exp = "atoll"
+                    filename_exp = "zi_atoll"
+                    modename_exp = "zombie infection"
+                    daterel_exp = "october 9, 2023"
+                    loopy = false
+                    ziatoll = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 37) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 38 && mvmexample == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/mvmexample.png"
+                    inname_exp = "example"
+                    filename_exp = "mvm_example"
+                    modename_exp = "mann vs machine"
+                    daterel_exp = "august 15, 2012"
+                    loopy = false
+                    mvmexample = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 38) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 39 && arravine == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/arravine.png"
+                    inname_exp = "ravine"
+                    filename_exp = "arena_ravine"
+                    modename_exp = "arena"
+                    daterel_exp = "august 19, 2008"
+                    loopy = false
+                    arravine = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 39) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 40 && ctfdoublefrost == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/ctfdoublefrost.png"
+                    inname_exp = "doublefrost"
+                    filename_exp = "ctf_doublecross_snowy"
+                    modename_exp = "capture the flag"
+                    daterel_exp = "december 2, 2021"
+                    loopy = false
+                    ctfdoublefrost = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 40) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 41 && adjunction == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/adjunction.png"
+                    inname_exp = "junction"
+                    filename_exp = "cp_junction_final"
+                    modename_exp = "attack/defend"
+                    daterel_exp = "february 24, 2009"
+                    loopy = false
+                    adjunction = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 41) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 42 && adgorge == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/adgorge.jpg"
+                    inname_exp = "gorge"
+                    filename_exp = "cp_gorge"
+                    modename_exp = "attack/defend"
+                    daterel_exp = "december 17, 2009"
+                    loopy = false
+                    adgorge = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 42) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 43 && medsandcastle == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/medsandcastle.png"
+                    inname_exp = "sandcastle"
+                    filename_exp = "cp_degrootkeep_rats"
+                    modename_exp = "medieval"
+                    daterel_exp = "october 9, 2023"
+                    loopy = false
+                    medsandcastle = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 43) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 44 && cpfastlane == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/cpfastlane.png"
+                    inname_exp = "fastlane"
+                    filename_exp = "cp_fastlane"
+                    modename_exp = "control point"
+                    daterel_exp = "june 19, 2008"
+                    loopy = false
+                    cpfastlane = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 44) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 45 && cppowerhouse == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/cppowerhouse.png"
+                    inname_exp = "powerhouse"
+                    filename_exp = "cp_powerhouse"
+                    modename_exp = "control point"
+                    daterel_exp = "july 2, 2015"
+                    loopy = false
+                    cppowerhouse = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 45) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 46 && kothcascade == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/kothcascade.png"
+                    inname_exp = "cascade"
+                    filename_exp = "koth_cascade"
+                    modename_exp = "king of the hill"
+                    daterel_exp = "december 2, 2021"
+                    loopy = false
+                    kothcascade = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 46) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 47 && kothmegaton == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/kothmegaton.png"
+                    inname_exp = "megaton"
+                    filename_exp = "koth_megaton"
+                    modename_exp = "king of the hill"
+                    daterel_exp = "july 18, 2024"
+                    loopy = false
+                    kothmegaton = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 47) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 48 && kothtoxic == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/kothtoxic.png"
+                    inname_exp = "toxic"
+                    filename_exp = "koth_toxic"
+                    modename_exp = "king of the hill"
+                    daterel_exp = "october 10, 2024"
+                    loopy = false
+                    kothtoxic = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 48) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 49 && mpgorge == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/mpgorge.png"
+                    inname_exp = "gorge"
+                    filename_exp = "ctf_gorge"
+                    modename_exp = "mannpower"
+                    daterel_exp = "december 22, 2014"
+                    loopy = false
+                    mpgorge = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 49) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 50 && mvmcoaltown == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/mvmcoaltown.png"
+                    inname_exp = "coal town"
+                    filename_exp = "mvm_coaltown"
+                    modename_exp = "mann vs machine"
+                    daterel_exp = "august 15, 2012"
+                    loopy = false
+                    mvmcoaltown = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 50) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 51 && passtimbertown == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/passtimbertown.jpg"
+                    inname_exp = "timbertown"
+                    filename_exp = "pass_timbertown"
+                    modename_exp = "pass time"
+                    daterel_exp = "november 25, 2015"
+                    loopy = false
+                    passtimbertown = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 51) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 52 && plbadwater == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/plbadwater.png"
+                    inname_exp = "badwater basin"
+                    filename_exp = "pl_badwater"
+                    modename_exp = "payload"
+                    daterel_exp = "august 19, 2008"
+                    loopy = false
+                    plbadwater = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 52) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 53 && plembargo == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/plembargo.png"
+                    inname_exp = "embargo"
+                    filename_exp = "pl_embargo"
+                    modename_exp = "payload"
+                    daterel_exp = "july 18, 2024"
+                    loopy = false
+                    plembargo = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 53) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 54 && plodyssey == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/plodyssey.png"
+                    inname_exp = "odyssey"
+                    filename_exp = "pl_odyssey"
+                    modename_exp = "payload"
+                    daterel_exp = "july 18, 2024"
+                    loopy = false
+                    plodyssey = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 54) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 55 && plthundermountain == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/plthundermountain.png"
+                    inname_exp = "thunder mountain"
+                    filename_exp = "pl_thundermountain"
+                    modename_exp = "payload"
+                    daterel_exp = "july 8, 2010"
+                    loopy = false
+                    plthundermountain = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 55) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 56 && pdmannsylvania == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/pdmannsylvania.jpg"
+                    inname_exp = "mannsylvania"
+                    filename_exp = "pd_mannsylvania"
+                    modename_exp = "player destruction"
+                    daterel_exp = "october 9, 2023"
+                    loopy = false
+                    pdmannsylvania = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 56) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 57 && sdcoc == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/sdcoc.png"
+                    inname_exp = "carnival of carnage"
+                    filename_exp = "sd_doomsday_event"
+                    modename_exp = "special delivery"
+                    daterel_exp = "october 29, 2014"
+                    loopy = false
+                    sdcoc = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 57) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 58 && vshmaul == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/vshmaul.png"
+                    inname_exp = "maul"
+                    filename_exp = "vsh_maul"
+                    modename_exp = "versus saxton hale"
+                    daterel_exp = "december 11, 2024"
+                    loopy = false
+                    vshmaul = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 58) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 59 && zisanitarium == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/zisanitarium.png"
+                    inname_exp = "sanitarium"
+                    filename_exp = "zi_sanitarium"
+                    modename_exp = "zombie infection"
+                    daterel_exp = "october 9, 2023"
+                    loopy = false
+                    zisanitarium = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 59) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 60 && othdevtest == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/othdevtest.jpg"
+                    inname_exp = "devtest"
+                    filename_exp = "devtest"
+                    modename_exp = "other"
+                    daterel_exp = "june 27, 2012"
+                    loopy = false
+                    othdevtest = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 60) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 61 && arbyre == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/arbyre.jpg"
+                    inname_exp = "byre"
+                    filename_exp = "arena_byre"
+                    modename_exp = "arena"
+                    daterel_exp = "october 6, 2015"
+                    loopy = false
+                    arbyre = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 61) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 62 && ctfcrasher == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/ctfcrasher.jpg"
+                    inname_exp = "crasher!"
+                    filename_exp = "ctf_crasher"
+                    modename_exp = "capture the flag"
+                    daterel_exp = "october 5, 2022"
+                    loopy = false
+                    ctfcrasher = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 62) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 63 && adcarrier == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/adcarrier.png"
+                    inname_exp = "carrier"
+                    filename_exp = "cp_carrier"
+                    modename_exp = "attack/defend"
+                    daterel_exp = "december 7, 2023"
+                    loopy = false
+                    adcarrier = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 63) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 64 && adhardwood == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/adhardwood.png"
+                    inname_exp = "hardwood"
+                    filename_exp = "cp_hardwood_final"
+                    modename_exp = "attack/defend"
+                    daterel_exp = "july 12, 2023"
+                    loopy = false
+                    adhardwood = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 64) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 65 && adsteel == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/adsteel.png"
+                    inname_exp = "steel"
+                    filename_exp = "cp_steel"
+                    modename_exp = "attack/defend"
+                    daterel_exp = "august 19, 2008"
+                    loopy = false
+                    adsteel = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 65) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 66 && cp5gorge == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/cp5gorge.png"
+                    inname_exp = "5gorge"
+                    filename_exp = "cp_5gorge"
+                    modename_exp = "control point"
+                    daterel_exp = "january 19, 2011"
+                    loopy = false
+                    cp5gorge = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 66) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 67 && cpsnakewater == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/cpsnakewater.png"
+                    inname_exp = "snakewater"
+                    filename_exp = "cp_snakewater_final1"
+                    modename_exp = "control point"
+                    daterel_exp = "november 21, 2013"
+                    loopy = false
+                    cpsnakewater = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 67) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 68 && kothking == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/kothking.png"
+                    inname_exp = "kong king"
+                    filename_exp = "koth_king"
+                    modename_exp = "king of the hill"
+                    daterel_exp = "august 10, 2012"
+                    loopy = false
+                    kothking = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 68) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 69 && kothnucleus == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/kothnucleus.png"
+                    inname_exp = "nucleus"
+                    filename_exp = "koth_nucleus"
+                    modename_exp = "king of the hill"
+                    daterel_exp = "august 13, 2009"
+                    loopy = false
+                    kothnucleus = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 69) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 70 && kotheyeaduct == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/kotheyeaduct.png"
+                    inname_exp = "eyeaduct"
+                    filename_exp = "koth_viaduct_event"
+                    modename_exp = "king of the hill"
+                    daterel_exp = "october 27, 2011"
+                    loopy = false
+                    kotheyeaduct = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 70) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 71 && mphellfire == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/mphellfire.png"
+                    inname_exp = "hellfire"
+                    filename_exp = "ctf_hellfire"
+                    modename_exp = "mannpower"
+                    daterel_exp = "october 28, 2015"
+                    loopy = false
+                    mphellfire = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 71) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 72 && mvmrottenburg == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/mvmrottenburg.png"
+                    inname_exp = "rottenburg"
+                    filename_exp = "mvm_rottenburg"
+                    modename_exp = "mann vs machine"
+                    daterel_exp = "november 21, 2013"
+                    loopy = false
+                    mvmrottenburg = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 72) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 73 && passbrickyard == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/passbrickyard.png"
+                    inname_exp = "brickyard"
+                    filename_exp = "pass_brickyard"
+                    modename_exp = "pass time"
+                    daterel_exp = "august 18, 2015"
+                    loopy = false
+                    passbrickyard = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 73) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 74 && plborneo == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/plborneo.png"
+                    inname_exp = "borneo"
+                    filename_exp = "pl_borneo"
+                    modename_exp = "payload"
+                    daterel_exp = "july 2, 2015"
+                    loopy = false
+                    plborneo = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 74) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 75 && plcorruption == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/plcorruption.png"
+                    inname_exp = "corruption"
+                    filename_exp = "pl_corruption"
+                    modename_exp = "payload"
+                    daterel_exp = "october 9, 2023"
+                    loopy = false
+                    plcorruption = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 75) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 76 && plprecipice == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/plprecipice.png"
+                    inname_exp = "precipice"
+                    filename_exp = "pl_precipice_event_final"
+                    modename_exp = "payload"
+                    daterel_exp = "october 10, 2019"
+                    loopy = false
+                    plprecipice = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 76) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 77 && plwutville == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/plwutville.png"
+                    inname_exp = "wutville"
+                    filename_exp = "pl_wutville_event"
+                    modename_exp = "payload"
+                    daterel_exp = "december 3, 2020"
+                    loopy = false
+                    plwutville = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 77) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 78 && plrbanana == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/plrbanana.png"
+                    inname_exp = "banana bay"
+                    filename_exp = "plr_bananabay"
+                    modename_exp = "payload race"
+                    daterel_exp = "october 20, 2017"
+                    loopy = false
+                    plrbanana = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 78) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 79 && pdgalleria == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/pdgalleria.png"
+                    inname_exp = "galleria"
+                    filename_exp = "pd_galleria"
+                    modename_exp = "player destruction"
+                    daterel_exp = "december 7, 2023"
+                    loopy = false
+                    pdgalleria = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 79) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 80 && vshskirmish == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/vshskirmish.png"
+                    inname_exp = "skirmish"
+                    filename_exp = "vsh_skirmish"
+                    modename_exp = "versus saxton hale"
+                    daterel_exp = "july 12, 2023"
+                    loopy = false
+                    vshskirmish = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 80) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 81 && zimurky == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/zimurky.png"
+                    inname_exp = "murky"
+                    filename_exp = "zi_murky"
+                    modename_exp = "zombie infection"
+                    daterel_exp = "october 9, 2023"
+                    loopy = false
+                    zimurky = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 81) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 82 && othitemtest == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/othitemtest.jpg"
+                    inname_exp = "itemtest"
+                    filename_exp = "itemtest"
+                    modename_exp = "other"
+                    daterel_exp = "december 17, 2010"
+                    loopy = false
+                    othitemtest = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 82) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 83 && argraveyard == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/argraveyard.png"
+                    inname_exp = "graveyard"
+                    filename_exp = "arena_lumberyard_event"
+                    modename_exp = "arena"
+                    daterel_exp = "october 5, 2021"
+                    loopy = false
+                    argraveyard = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 83) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 84 && ctfsawmill == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/ctfsawmill.png"
+                    inname_exp = "sawmill"
+                    filename_exp = "ctf_sawmill"
+                    modename_exp = "capture the flag"
+                    daterel_exp = "august 13, 2009"
+                    loopy = false
+                    ctfsawmill = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 84) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 85 && adfrostwatch == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/adfrostwatch.png"
+                    inname_exp = "frostwatch"
+                    filename_exp = "cp_frostwatch"
+                    modename_exp = "attack/defend"
+                    daterel_exp = "december 5, 2022"
+                    loopy = false
+                    adfrostwatch = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 85) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 86 && adhadal == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/adhadal.png"
+                    inname_exp = "hadal"
+                    filename_exp = "cp_hadal"
+                    modename_exp = "attack/defend"
+                    daterel_exp = "july 18, 2024"
+                    loopy = false
+                    adhadal = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 86) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 87 && admossrock == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/admossrock.jpg"
+                    inname_exp = "mossrock"
+                    filename_exp = "cp_mossrock"
+                    modename_exp = "attack/defend"
+                    daterel_exp = "october 20, 2017"
+                    loopy = false
+                    admossrock = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 87) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 88 && cpcoldfront == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/cpcoldfront.png"
+                    inname_exp = "coldfront"
+                    filename_exp = "cp_coldfront"
+                    modename_exp = "control point"
+                    daterel_exp = "july 8, 2010"
+                    loopy = false
+                    cpcoldfront = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 88) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 89 && cpmetalworks == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/cpmetalworks.jpg"
+                    inname_exp = "metalworks"
+                    filename_exp = "cp_metalworks"
+                    modename_exp = "control point"
+                    daterel_exp = "july 7, 2016"
+                    loopy = false
+                    cpmetalworks = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 89) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 90 && cpyukon == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/cpyukon.png"
+                    inname_exp = "yukon"
+                    filename_exp = "cp_yukon_final"
+                    modename_exp = "control point"
+                    daterel_exp = "august 13, 2009"
+                    loopy = false
+                    cpyukon = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 90) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 91 && kothcachoeira == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/kothcachoeira.png"
+                    inname_exp = "cachoeira"
+                    filename_exp = "koth_cachoeira"
+                    modename_exp = "king of the hill"
+                    daterel_exp = "july 18, 2024"
+                    loopy = false
+                    kothcachoeira = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 91) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 92 && kothmegalo == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/kothmegalo.png"
+                    inname_exp = "megalo"
+                    filename_exp = "koth_megalo"
+                    modename_exp = "king of the hill"
+                    daterel_exp = "october 1, 2020"
+                    loopy = false
+                    kothmegalo = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 92) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 93 && kothslasher == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/kothslasher.jpg"
+                    inname_exp = "slasher"
+                    filename_exp = "koth_slasher"
+                    modename_exp = "king of the hill"
+                    daterel_exp = "october 19, 2018"
+                    loopy = false
+                    kothslasher = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 93) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 94 && mpfoundry == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/mpfoundry.png"
+                    inname_exp = "foundry"
+                    filename_exp = "ctf_foundry"
+                    modename_exp = "mannpower"
+                    daterel_exp = "december 22, 2014"
+                    loopy = false
+                    mpfoundry = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 94) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 95 && mvmmannhattan == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/mvmmannhattan.png"
+                    inname_exp = "mannhattan"
+                    filename_exp = "mvm_mannhattan"
+                    modename_exp = "mann vs machine"
+                    daterel_exp = "november 21, 2013"
+                    loopy = false
+                    mvmmannhattan = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 95) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 96 && plcactus == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/plcactus.jpg"
+                    inname_exp = "cactus canyon"
+                    filename_exp = "pl_cactuscanyon"
+                    modename_exp = "payload"
+                    daterel_exp = "july 8, 2014"
+                    loopy = false
+                    plcactus = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 96) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 97 && plpatagonia == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/plpatagonia.png"
+                    inname_exp = "patagonia"
+                    filename_exp = "pl_patagonia"
+                    modename_exp = "payload"
+                    daterel_exp = "december 11, 2024"
+                    loopy = false
+                    plpatagonia = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 97) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 98 && plvenice == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/plvenice.png"
+                    inname_exp = "venice"
+                    filename_exp = "pl_venice"
+                    modename_exp = "payload"
+                    daterel_exp = "july 12, 2023"
+                    loopy = false
+                    plvenice = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 98) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 99 && plrhightower == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/plrhightower.png"
+                    inname_exp = "hightower"
+                    filename_exp = "plr_hightower"
+                    modename_exp = "payload race"
+                    daterel_exp = "july 8, 2010"
+                    loopy = false
+                    plrhightower = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 99) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 100 && pdbottemlesspit == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/pdbottemlesspit.png"
+                    inname_exp = "pit of death"
+                    filename_exp = "pd_pit_of_death_event"
+                    modename_exp = "player destruction"
+                    daterel_exp = "october 21, 2016"
+                    loopy = false
+                    pdbottemlesspit = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 100) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 101 && vshdistillery == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/vshdistillery.png"
+                    inname_exp = "distillery"
+                    filename_exp = "vsh_distillery"
+                    modename_exp = "versus saxton hale"
+                    daterel_exp = "july 12, 2023"
+                    loopy = false
+                    vshdistillery = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 101) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 102 && ziwoods == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/ziwoods.png"
+                    inname_exp = "woods"
+                    filename_exp = "zi_woods"
+                    modename_exp = "zombie infection"
+                    daterel_exp = "october 9, 2023"
+                    loopy = false
+                    ziwoods = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 102) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 103 && othbackground01 == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/othbackground01.jpg"
+                    inname_exp = "background01"
+                    filename_exp = "background01"
+                    modename_exp = "other"
+                    daterel_exp = "october 10, 2007"
+                    loopy = false
+                    othbackground01 = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 103) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 104 && argranary == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/argranary.jpg"
+                    inname_exp = "granary"
+                    filename_exp = "arena_granary"
+                    modename_exp = "arena"
+                    daterel_exp = "august 19, 2008"
+                    loopy = false
+                    argranary = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 104) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 105 && ctfdoublecross == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/ctfdoublecross.png"
+                    inname_exp = "double cross"
+                    filename_exp = "ctf_doublecross"
+                    modename_exp = "capture the flag"
+                    daterel_exp = "december 17, 2009"
+                    loopy = false
+                    ctfdoublecross = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 105) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 106 && adhaarp == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/ctfhaarp.png"
+                    inname_exp = "haarp"
+                    filename_exp = "ctf_haarp"
+                    modename_exp = "attack/defend"
+                    daterel_exp = "december 7, 2023"
+                    loopy = false
+                    adhaarp = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 106) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 107 && adspookeyridge == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/adspookeyridge.png"
+                    inname_exp = "spookeyridge"
+                    filename_exp = "cp_spookeyridge"
+                    modename_exp = "attack/defend"
+                    daterel_exp = "october 5, 2022"
+                    loopy = false
+                    adspookeyridge = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 107) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 108 && cpfreakyfair == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/cpfreakyfair.png"
+                    inname_exp = "freaky fair"
+                    filename_exp = "cp_freaky_fair"
+                    modename_exp = "control point"
+                    daterel_exp = "october 10, 2024"
+                    loopy = false
+                    cpfreakyfair = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 108) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 109 && cpvanguard == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/cpvanguard.png"
+                    inname_exp = "vanguard"
+                    filename_exp = "cp_vanguard"
+                    modename_exp = "control point"
+                    daterel_exp = "december 17, 2015"
+                    loopy = false
+                    cpvanguard = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 109) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 110 && kothlaughter == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/kothlaughter.png"
+                    inname_exp = "laughter"
+                    filename_exp = "koth_slaughter_event"
+                    modename_exp = "king of the hill"
+                    daterel_exp = "october 10, 2019"
+                    loopy = false
+                    kothlaughter = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 110) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 111 && kothovercast == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/kothovercast.png"
+                    inname_exp = "overcast"
+                    filename_exp = "koth_overcast_final"
+                    modename_exp = "king of the hill"
+                    daterel_exp = "december 11, 2024"
+                    loopy = false
+                    kothovercast = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 111) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 112 && kothviaduct == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/kothviaduct.jpg"
+                    inname_exp = "viaduct"
+                    filename_exp = "koth_viaduct"
+                    modename_exp = "king of the hill"
+                    daterel_exp = "august 13, 2009"
+                    loopy = false
+                    kothviaduct = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 112) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 113 && mvmghosttown == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/mvmghosttown.png"
+                    inname_exp = "ghost town"
+                    filename_exp = "mvm_ghost_town"
+                    modename_exp = "mann vs machine"
+                    daterel_exp = "october 26, 2012"
+                    loopy = false
+                    mvmghosttown = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 113) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 114 && plbrimstone == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/plbrimstone.png"
+                    inname_exp = "brimstone"
+                    filename_exp = "pl_fifthcurve_event"
+                    modename_exp = "payload"
+                    daterel_exp = "october 21, 2016"
+                    loopy = false
+                    plbrimstone = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 114) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 115 && plphoenix == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/plphoenix.png"
+                    inname_exp = "phoenix"
+                    filename_exp = "pl_phoenix"
+                    modename_exp = "payload"
+                    daterel_exp = "july 12, 2023"
+                    loopy = false
+                    plphoenix = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 115) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 116 && plhasslecastle == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/plhasslecastle.png"
+                    inname_exp = "hassle castle"
+                    filename_exp = "pl_hasslecastle"
+                    modename_exp = "payload"
+                    daterel_exp = "october 1, 2020"
+                    loopy = false
+                    plhasslecastle = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 116) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 117 && plpipeline == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/plpipeline.jpg"
+                    inname_exp = "pipeline"
+                    filename_exp = "plr_pipeline"
+                    modename_exp = "payload race"
+                    daterel_exp = "may 21, 2009"
+                    loopy = false
+                    plpipeline = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 117) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 118 && pdcursedcove == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/pdcursedcove.png"
+                    inname_exp = "cursed cove"
+                    filename_exp = "pd_cursed_cove_event"
+                    modename_exp = "player destruction"
+                    daterel_exp = "october 19, 2018"
+                    loopy = false
+                    pdcursedcove = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 118) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 119 && vshoutburst == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/vshoutburst.png"
+                    inname_exp = "outburst"
+                    filename_exp = "vsh_outburst"
+                    modename_exp = "versus saxton hale"
+                    daterel_exp = "october 10, 2024"
+                    loopy = false
+                    vshoutburst = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 119) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 120 && zihl2e1 == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/zihl2e1.png"
+                    inname_exp = "devastation"
+                    filename_exp = "zi_devastation_final1"
+                    modename_exp = "zombie infection"
+                    daterel_exp = "october 9, 2023"
+                    loopy = false
+                    zihl2e1 = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 120) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 121 && othcloak == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/othcloak.jpg"
+                    inname_exp = "cloak"
+                    filename_exp = "cloak"
+                    modename_exp = "other"
+                    daterel_exp = "june 27, 2012"
+                    loopy = false
+                    othcloak = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 121) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 122 && arnucleus == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/arnucleus.png"
+                    inname_exp = "nucleus"
+                    filename_exp = "arena_nucleus"
+                    modename_exp = "arena"
+                    daterel_exp = "may 21, 2009"
+                    loopy = false
+                    arnucleus = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 122) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 123 && ctfturbine == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/ctfturbine.jpg"
+                    inname_exp = "turbine"
+                    filename_exp = "ctf_turbine"
+                    modename_exp = "capture the flag"
+                    daterel_exp = "june 19, 2008"
+                    loopy = false
+                    ctfturbine = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 123) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 124 && addustbowl == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/addustbowl.jpg"
+                    inname_exp = "dustbowl"
+                    filename_exp = "cp_dustbowl"
+                    modename_exp = "attack/defend"
+                    daterel_exp = "october 10, 2007"
+                    loopy = false
+                    addustbowl = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 124) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 125 && adovergrown == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/adovergrown.png"
+                    inname_exp = "overgrown"
+                    filename_exp = "cp_overgrown"
+                    modename_exp = "attack/defend"
+                    daterel_exp = "july 18, 2024"
+                    loopy = false
+                    adovergrown = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 125) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 126 && cpbadlands == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/cpbadlands.png"
+                    inname_exp = "badlands"
+                    filename_exp = "cp_badlands"
+                    modename_exp = "control point"
+                    daterel_exp = "february 14, 2008"
+                    loopy = false
+                    cpbadlands = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 126) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 127 && kothhighpass == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/kothhighpass.png"
+                    inname_exp = "highpass"
+                    filename_exp = "koth_highpass"
+                    modename_exp = "king of the hill"
+                    daterel_exp = "december 17, 2015"
+                    loopy = false
+                    kothhighpass = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 127) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 128 && kothrotunda == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/kothrotunda.png"
+                    inname_exp = "rotunda"
+                    filename_exp = "koth_rotunda"
+                    modename_exp = "king of the hill"
+                    daterel_exp = "july 12, 2023"
+                    loopy = false
+                    kothrotunda = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 128) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 129 && mvmmannworks == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/mvmmannworks.png"
+                    inname_exp = "mannworks"
+                    filename_exp = "mvm_mannworks"
+                    modename_exp = "mann vs machine"
+                    daterel_exp = "august 15, 2012"
+                    loopy = false
+                    mvmmannworks = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 129) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 130 && plemerge == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/plemerge.png"
+                    inname_exp = "emerge"
+                    filename_exp = "pl_emerge"
+                    modename_exp = "payload"
+                    daterel_exp = "december 7, 2023"
+                    loopy = false
+                    plemerge = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 130) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 131 && plpier == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/plpier.png"
+                    inname_exp = "pier"
+                    filename_exp = "pl_pier"
+                    modename_exp = "payload"
+                    daterel_exp = "december 3, 2020"
+                    loopy = false
+                    plpier = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 131) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 132 && plrcutyoass == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/plrcutyoass.png"
+                    inname_exp = "cutter"
+                    filename_exp = "plr_cutter"
+                    modename_exp = "payload race"
+                    daterel_exp = "december 11, 2024"
+                    loopy = false
+                    plrcutyoass = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 132) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 133 && pdselbyen == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/pdselbyen.png"
+                    inname_exp = "selbyen"
+                    filename_exp = "pd_selbyen"
+                    modename_exp = "player destruction"
+                    daterel_exp = "july 12, 2023"
+                    loopy = false
+                    pdselbyen = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 133) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 134 && vshtinyrock == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/vshtinyrock.png"
+                    inname_exp = "tiny rock"
+                    filename_exp = "vsh_tinyrock"
+                    modename_exp = "versus saxton hale"
+                    daterel_exp = "july 12, 2023"
+                    loopy = false
+                    vshtinyrock = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 134) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 135 && arsawmill == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/arsawmill.png"
+                    inname_exp = "sawmill"
+                    filename_exp = "arena_sawmill"
+                    modename_exp = "arena"
+                    daterel_exp = "may 21, 2009"
+                    loopy = false
+                    arsawmill = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 135) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 136 && ctflandfall == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/ctflandfall.png"
+                    inname_exp = "landfall"
+                    filename_exp = "ctf_landfall"
+                    modename_exp = "capture the flag"
+                    daterel_exp = "december 17, 2015"
+                    loopy = false
+                    ctflandfall = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 136) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 137 && adegypt == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/adegypt.png"
+                    inname_exp = "egypt"
+                    filename_exp = "cp_egypt_final"
+                    modename_exp = "attack/defend"
+                    daterel_exp = "february 24, 2009"
+                    loopy = false
+                    adegypt = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 137) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 138 && admountainlab == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/admountainlab.jpg"
+                    inname_exp = "mountain lab"
+                    filename_exp = "cp_mountainlab"
+                    modename_exp = "attack/defend"
+                    daterel_exp = "october 27, 2010"
+                    loopy = false
+                    admountainlab = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 138) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 139 && adsulfur == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/adsulfur.png"
+                    inname_exp = "sulfur"
+                    filename_exp = "cp_sulfur"
+                    modename_exp = "attack/defend"
+                    daterel_exp = "july 12, 2023"
+                    loopy = false
+                    adsulfur = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 139) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 140 && cpcanaveral == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/cpcanaveral.png"
+                    inname_exp = "canaveral"
+                    filename_exp = "cp_canaveral_5cp"
+                    modename_exp = "control point"
+                    daterel_exp = "july 18, 2024"
+                    loopy = false
+                    cpcanaveral = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 140) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 141 && kothbrazil == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/kothbrazil.jpg"
+                    inname_exp = "brazil"
+                    filename_exp = "koth_brazil"
+                    modename_exp = "king of the hill"
+                    daterel_exp = "october 20, 2017"
+                    loopy = false
+                    kothbrazil = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 141) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 142 && kothmoonshine == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/kothmoonshine.png"
+                    inname_exp = "moonshine event"
+                    filename_exp = "koth_moonshine_event"
+                    modename_exp = "king of the hill"
+                    daterel_exp = "october 28, 2015"
+                    loopy = false
+                    kothmoonshine = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 142) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 143 && mvmbigrock == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/mvmbigrock.png"
+                    inname_exp = "bigrock"
+                    filename_exp = "mvm_bigrock"
+                    modename_exp = "mann vs machine"
+                    daterel_exp = "december 20, 2012"
+                    loopy = false
+                    mvmbigrock = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 143) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 144 && plcamber == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/plcamber.png"
+                    inname_exp = "camber"
+                    filename_exp = "pl_camber"
+                    modename_exp = "payload"
+                    daterel_exp = "december 7, 2023"
+                    loopy = false
+                    plcamber = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 144) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 145 && plrumford == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/plrumford.png"
+                    inname_exp = "rumford"
+                    filename_exp = "pl_rumford_event"
+                    modename_exp = "payload"
+                    daterel_exp = "december 5, 2022"
+                    loopy = false
+                    plrumford = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 145) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 146 && plrbonesaw == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/plrbonesaw.png"
+                    inname_exp = "bonesaw"
+                    filename_exp = "plr_hacksaw_event"
+                    modename_exp = "payload race"
+                    daterel_exp = "october 5, 2022"
+                    loopy = false
+                    plrbonesaw = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 146) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 147 && pdcircus == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/pdcircus.png"
+                    inname_exp = "circus"
+                    filename_exp = "pd_circus"
+                    modename_exp = "player destruction"
+                    daterel_exp = "october 10, 2024"
+                    loopy = false
+                    pdcircus = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 147) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 148 && arlumberyard == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/arlumberyard.jpg"
+                    inname_exp = "lumberyard"
+                    filename_exp = "arena_lumberyard"
+                    modename_exp = "arena"
+                    daterel_exp = "august 19, 2008"
+                    loopy = false
+                    arlumberyard = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 148) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 149 && ctfwell == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/ctfwell.png"
+                    inname_exp = "well"
+                    filename_exp = "ctf_well"
+                    modename_exp = "capture the flag"
+                    daterel_exp = "january 25, 2008"
+                    loopy = false
+                    ctfwell = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 149) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 150 && adgorgeevent == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/adgorgeevent.png"
+                    inname_exp = "gorge event"
+                    filename_exp = "cp_gorge_event"
+                    modename_exp = "attack/defend"
+                    daterel_exp = "october 28, 2015"
+                    loopy = false
+                    adgorgeevent = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 150) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 151 && cpfoundry == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/cpfoundry.png"
+                    inname_exp = "foundry"
+                    filename_exp = "cp_foundry"
+                    modename_exp = "control point"
+                    daterel_exp = "december 15, 2011"
+                    loopy = false
+                    cpfoundry = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 151) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 152 && kothhmmbagel == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/kothhmmbagel.png"
+                    inname_exp = "cauldron"
+                    filename_exp = "koth_bagel_event"
+                    modename_exp = "king of the hill"
+                    daterel_exp = "october 19, 2018"
+                    loopy = false
+                    kothhmmbagel = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 152) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 153 && kothsharkbay == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/kothsharkbay.png"
+                    inname_exp = "sharkbay"
+                    filename_exp = "koth_sharkbay"
+                    modename_exp = "king of the hill"
+                    daterel_exp = "july 12, 2023"
+                    loopy = false
+                    kothsharkbay = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 153) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 154 && plbloodwater == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/plbloodwater.jpg"
+                    inname_exp = "bloodwater"
+                    filename_exp = "pl_bloodwater"
+                    modename_exp = "payload"
+                    daterel_exp = "october 1, 2020"
+                    loopy = false
+                    plbloodwater = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 154) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 155 && plchaos == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/plchaos.png"
+                    inname_exp = "hellstone"
+                    filename_exp = "pl_millstone_event"
+                    modename_exp = "payload"
+                    daterel_exp = "october 28, 2015"
+                    loopy = false
+                    plchaos = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 155) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 156 && pdwatergate == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/pdwatergate.jpg"
+                    inname_exp = "watergate"
+                    filename_exp = "pd_watergate"
+                    modename_exp = "player destruction"
+                    daterel_exp = "october 6, 2015"
+                    loopy = false
+                    pdwatergate = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 156) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 157 && arwell == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/arwell.jpg"
+                    inname_exp = "well"
+                    filename_exp = "arena_well"
+                    modename_exp = "arena"
+                    daterel_exp = "august 19, 2008"
+                    loopy = false
+                    arwell = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 157) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 158 && ctfpelican == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/ctfpelican.png"
+                    inname_exp = "pelican peak"
+                    filename_exp = "ctf_pelican_peak"
+                    modename_exp = "capture the flag"
+                    daterel_exp = "july 12, 2023"
+                    loopy = false
+                    ctfpelican = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 158) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 159 && adgravelpit == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/adgravelpit.png"
+                    inname_exp = "gravel pit"
+                    filename_exp = "cp_gravelpit"
+                    modename_exp = "attack/defend"
+                    daterel_exp = "october 10, 2007"
+                    loopy = false
+                    adgravelpit = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 159) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 160 && admanor == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/admanor.png"
+                    inname_exp = "mann manor"
+                    filename_exp = "cp_manor_event"
+                    modename_exp = "attack/defend"
+                    daterel_exp = "october 27, 2010"
+                    loopy = false
+                    admanor = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 160) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 161 && cpsunshine == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/cpsunshine.png"
+                    inname_exp = "sunshine"
+                    filename_exp = "cp_sunshine"
+                    modename_exp = "control point"
+                    daterel_exp = "july 7, 2016"
+                    loopy = false
+                    cpsunshine = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 161) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 162 && kothkrampus == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/kothkrampus.png"
+                    inname_exp = "krampus"
+                    filename_exp = "koth_krampus"
+                    modename_exp = "king of the hill"
+                    daterel_exp = "december 7, 2023"
+                    loopy = false
+                    kothkrampus = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 162) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 163 && kothscarysawmill == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/kothscarysawmill.png"
+                    inname_exp = "soul-mill"
+                    filename_exp = "koth_sawmill_event"
+                    modename_exp = "king of the hill"
+                    daterel_exp = "october 5, 2022"
+                    loopy = false
+                    kothscarysawmill = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 163) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 164 && plfrontier == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/plfrontier.jpg"
+                    inname_exp = "frontier"
+                    filename_exp = "pl_frontier_final"
+                    modename_exp = "payload"
+                    daterel_exp = "february 24, 2011"
+                    loopy = false
+                    plfrontier = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 164) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 165 && plspineyard == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/plspineyard.png"
+                    inname_exp = "spineyard"
+                    filename_exp = "pl_spineyard"
+                    modename_exp = "payload"
+                    daterel_exp = "october 9, 2023"
+                    loopy = false
+                    plspineyard = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 165) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 166 && plrhelltower == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/plrhelltower.png"
+                    inname_exp = "helltower"
+                    filename_exp = "plr_hightower_event"
+                    modename_exp = "payload race"
+                    daterel_exp = "october 29, 2013"
+                    loopy = false
+                    plrhelltower = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 166) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 167 && pdsnowville == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/pdsnowville.png"
+                    inname_exp = "snowville"
+                    filename_exp = "pd_snowville_event"
+                    modename_exp = "player destruction"
+                    daterel_exp = "december 3, 2020"
+                    loopy = false
+                    pdsnowville = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 167) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 168 && arperks == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/arperks.png"
+                    inname_exp = "perks"
+                    filename_exp = "arena_perks"
+                    modename_exp = "arena"
+                    daterel_exp = "october 9, 2023"
+                    loopy = false
+                    arperks = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 168) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 169 && ctffrosty == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/ctffrosty.png"
+                    inname_exp = "frosty"
+                    filename_exp = "ctf_frosty"
+                    modename_exp = "capture the flag"
+                    daterel_exp = "december 5, 2022"
+                    loopy = false
+                    ctffrosty = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 169) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 170 && adcoalpit == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/adcoalpit.png"
+                    inname_exp = "coal pit"
+                    filename_exp = "cp_gravelpit_snowy"
+                    modename_exp = "attack/defend"
+                    daterel_exp = "december 5, 2022"
+                    loopy = false
+                    adcoalpit = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 170) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 171 && cpreckoner == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/cpreckoner.png"
+                    inname_exp = "reckoner"
+                    filename_exp = "cp_reckoner"
+                    modename_exp = "control point"
+                    daterel_exp = "july 12, 2023"
+                    loopy = false
+                    cpreckoner = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 171) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 172 && kothbadlands == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/kothbadlands.png"
+                    inname_exp = "badlands"
+                    filename_exp = "koth_badlands"
+                    modename_exp = "king of the hill"
+                    daterel_exp = "april 14, 2011"
+                    loopy = false
+                    kothbadlands = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 172) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 173 && kothsnowtower == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/kothsnowtower.png"
+                    inname_exp = "snowtower"
+                    filename_exp = "koth_snowtower"
+                    modename_exp = "king of the hill"
+                    daterel_exp = "december 7, 2023"
+                    loopy = false
+                    kothsnowtower = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 173) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 174 && plenclosure == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/plenclosure.png"
+                    inname_exp = "enclosure"
+                    filename_exp = "pl_enclosure_final"
+                    modename_exp = "payload"
+                    daterel_exp = "october 20, 2017"
+                    loopy = false
+                    plenclosure = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 174) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 175 && plhoodoo == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/plhoodoo.png"
+                    inname_exp = "hoodoo"
+                    filename_exp = "pl_hoodoo_final"
+                    modename_exp = "payload"
+                    daterel_exp = "may 21, 2009"
+                    loopy = false
+                    plhoodoo = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 175) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 176 && pdmonsters == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/pdmonsters.jpg"
+                    inname_exp = "monster bash"
+                    filename_exp = "pd_monster_bash"
+                    modename_exp = "player destruction"
+                    daterel_exp = "october 19, 2018"
+                    loopy = false
+                    pdmonsters = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 176) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 177 && arwatch == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/arwatch.jpg"
+                    inname_exp = "watchtower"
+                    filename_exp = "arena_watchtower"
+                    modename_exp = "arena"
+                    daterel_exp = "february 24, 2009"
+                    loopy = false
+                    arwatch = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 177) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 178 && ctfpenguin == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/ctfpenguin.png"
+                    inname_exp = "penguin peak"
+                    filename_exp = "ctf_penguin_peak"
+                    modename_exp = "capture the flag"
+                    daterel_exp = "december 11, 2024"
+                    loopy = false
+                    ctfpenguin = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 178) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 179 && aderebus == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/aderebus.png"
+                    inname_exp = "erebus"
+                    filename_exp = "cp_ambush_event"
+                    modename_exp = "attack/defend"
+                    daterel_exp = "october 5, 2021"
+                    loopy = false
+                    aderebus = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 179) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 180 && cpgranary == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/cpgranary.png"
+                    inname_exp = "granary"
+                    filename_exp = "cp_granary"
+                    modename_exp = "control point"
+                    daterel_exp = "october 10, 2007"
+                    loopy = false
+                    cpgranary = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 180) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 181 && kothharvest == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/kothharvest.png"
+                    inname_exp = "harvest"
+                    filename_exp = "koth_harvest_final"
+                    modename_exp = "king of the hill"
+                    daterel_exp = "october 29, 2009"
+                    loopy = false
+                    kothharvest = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 181) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 182 && kothsinthetic == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/kothsinthetic.png"
+                    inname_exp = "sinthetic"
+                    filename_exp = "koth_synthetic_event"
+                    modename_exp = "king of the hill"
+                    daterel_exp = "october 5, 2021"
+                    loopy = false
+                    kothsinthetic = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 182) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 183 && plterror == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/plterror.png"
+                    inname_exp = "terror"
+                    filename_exp = "pl_terror_event"
+                    modename_exp = "payload"
+                    daterel_exp = "october 5, 2021"
+                    loopy = false
+                    plterror = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 183) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 184 && plchilly == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/plchilly.png"
+                    inname_exp = "chilly"
+                    filename_exp = "pl_chilly"
+                    modename_exp = "payload"
+                    daterel_exp = "december 2, 2021"
+                    loopy = false
+                    plchilly = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 184) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 185 && ctfenibrut == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/ctfenibrut.png"
+                    inname_exp = "turbine event"
+                    filename_exp = "ctf_turbine_winter"
+                    modename_exp = "capture the flag"
+                    daterel_exp = "december 7, 2023"
+                    loopy = false
+                    ctfenibrut = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 185) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 186 && adlavapit == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/adlavapit.png"
+                    inname_exp = "lava pit"
+                    filename_exp = "cp_lavapit_final"
+                    modename_exp = "attack/defend"
+                    daterel_exp = "october 9, 2023"
+                    loopy = false
+                    adlavapit = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 186) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 187 && cpprocess == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/cpprocess.png"
+                    inname_exp = "process"
+                    filename_exp = "cp_process_final"
+                    modename_exp = "control point"
+                    daterel_exp = "july 10, 2013"
+                    loopy = false
+                    cpprocess = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 187) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 188 && kothghostfort == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/kothghostfort.png"
+                    inname_exp = "ghost fort"
+                    filename_exp = "koth_lakeside_event"
+                    modename_exp = "king of the hill"
+                    daterel_exp = "october 26, 2012"
+                    loopy = false
+                    kothghostfort = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 188) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 189 && plfrostcliff == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/plfrostcliff.png"
+                    inname_exp = "frostcliff"
+                    filename_exp = "pl_frostcliff"
+                    modename_exp = "payload"
+                    daterel_exp = "december 5, 2022"
+                    loopy = false
+                    plfrostcliff = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 189) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 190 && ctfsnowfall == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/ctfsnowfall.png"
+                    inname_exp = "snowfall"
+                    filename_exp = "ctf_snowfall_final"
+                    modename_exp = "capture the flag"
+                    daterel_exp = "december 3, 2020"
+                    loopy = false
+                    ctfsnowfall = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 190) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 191 && adbrew == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/adbrew.png"
+                    inname_exp = "brew"
+                    filename_exp = "cp_brew"
+                    modename_exp = "attack/defend"
+                    daterel_exp = "december 7, 2023"
+                    loopy = false
+                    adbrew = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 191) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 192 && cpsinshine == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/cpsinshine.png"
+                    inname_exp = "sinshine"
+                    filename_exp = "cp_sunshine_event"
+                    modename_exp = "control point"
+                    daterel_exp = "october 28, 2015"
+                    loopy = false
+                    cpsinshine = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 192) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 193 && kothlazarus == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/kothlazarus.jpg"
+                    inname_exp = "lazarus"
+                    filename_exp = "koth_lazarus"
+                    modename_exp = "king of the hill"
+                    daterel_exp = "october 20, 2017"
+                    loopy = false
+                    kothlazarus = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 193) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 194 && plghoulpit == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/plghoulpit.jpg"
+                    inname_exp = "ghoulpit"
+                    filename_exp = "pl_sludgepit_event"
+                    modename_exp = "payload"
+                    daterel_exp = "october 5, 2022"
+                    loopy = false
+                    plghoulpit = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 194) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 195 && ctf2fortin == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/ctf2fortin.png"
+                    inname_exp = "2fort invasion"
+                    filename_exp = "ctf_2fort_invasion"
+                    modename_exp = "capture the flag"
+                    daterel_exp = "october 6, 2015"
+                    loopy = false
+                    ctf2fortin = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 195) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 196 && adyetipark == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/adyetipark.png"
+                    inname_exp = "mercenary park"
+                    filename_exp = "cp_mercenarypark"
+                    modename_exp = "attack/defend"
+                    daterel_exp = "october 20, 2017"
+                    loopy = false
+                    adyetipark = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 196) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 197 && cpfreight == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/cpfreight.png"
+                    inname_exp = "freight"
+                    filename_exp = "cp_freight_final1"
+                    modename_exp = "control point"
+                    daterel_exp = "april 28, 2010"
+                    loopy = false
+                    cpfreight = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 197) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 198 && kothmapleridge == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/kothmapleridge.png"
+                    inname_exp = "maple ridge event"
+                    filename_exp = "koth_maple_ridge_event"
+                    modename_exp = "king of the hill"
+                    daterel_exp = "october 21, 2016"
+                    loopy = false
+                    kothmapleridge = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 198) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 199 && plbreadspace == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/plbreadspace.png"
+                    inname_exp = "bread space"
+                    filename_exp = "pl_breadspace"
+                    modename_exp = "payload"
+                    daterel_exp = "december 2, 2021"
+                    loopy = false
+                    plbreadspace = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 199) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 200 && kothmoldergrove == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/kothmoldergrove.png"
+                    inname_exp = "moldergrove"
+                    filename_exp = "koth_undergrove_event"
+                    modename_exp = "king of the hill"
+                    daterel_exp = "october 1, 2020"
+                    loopy = false
+                    kothmoldergrove = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 200) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 201 && plgravestone == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/plgravestone.png"
+                    inname_exp = "gravestone"
+                    filename_exp = "pl_rumble_event"
+                    modename_exp = "payload"
+                    daterel_exp = "october 19, 2018"
+                    loopy = false
+                    plgravestone = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 201) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 202 && kothharvestevent == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/kothharvestevent.png"
+                    inname_exp = "harvest event"
+                    filename_exp = "koth_harvest_event"
+                    modename_exp = "king of the hill"
+                    daterel_exp = "october 29, 2009"
+                    loopy = false
+                    kothharvestevent = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 202) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 203 && plsnowycoast == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/plsnowycoast.png"
+                    inname_exp = "snowycoast"
+                    filename_exp = "pl_snowycoast"
+                    modename_exp = "payload"
+                    daterel_exp = "december 17, 2015"
+                    loopy = false
+                    plsnowycoast = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 203) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 204 && kothsawmill == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/kothsawmill.png"
+                    inname_exp = "sawmill"
+                    filename_exp = "koth_sawmill"
+                    modename_exp = "king of the hill"
+                    daterel_exp = "august 13, 2009"
+                    loopy = false
+                    kothsawmill = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 204) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 205 && plgoldrush == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/plgoldrush.jpg"
+                    inname_exp = "gold rush"
+                    filename_exp = "pl_goldrush"
+                    modename_exp = "payload"
+                    daterel_exp = "april 29, 2008"
+                    loopy = false
+                    plgoldrush = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 205) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 206 && kothwall == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/kothwall.png"
+                    inname_exp = "los muertos"
+                    filename_exp = "koth_los_muertos"
+                    modename_exp = "king of the hill"
+                    daterel_exp = "october 5, 2021"
+                    loopy = false
+                    kothwall = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 206) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 207 && plpolar == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/plpolar.png"
+                    inname_exp = "polar"
+                    filename_exp = "pl_coal_event"
+                    modename_exp = "payload"
+                    daterel_exp = "december 2, 2021"
+                    loopy = false
+                    plpolar = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 207) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 208 && kothprobed == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/kothprobed.jpg"
+                    inname_exp = "probed"
+                    filename_exp = "koth_probed"
+                    modename_exp = "king of the hill"
+                    daterel_exp = "october 6, 2015"
+                    loopy = false
+                    kothprobed = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 208) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 209 && plswiftwater == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/plswiftwater.jpg"
+                    inname_exp = "swiftwater"
+                    filename_exp = "pl_swiftwater_final1"
+                    modename_exp = "payload"
+                    daterel_exp = "july 7, 2016"
+                    loopy = false
+                    plswiftwater = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 209) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 210 && pdatomsmash == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/pdatomsmash.png"
+                    inname_exp = "atom smash"
+                    filename_exp = "pd_atom_smash"
+                    modename_exp = "player destruction"
+                    daterel_exp = "july 18, 2024"
+                    loopy = false
+                    pdatomsmash = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 210) {
+                    ran = ran + 1
+
+                }
+                
+                if (ran == 211 && ctfpressure == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/ctfpressure.png"
+                    inname_exp = "pressure"
+                    filename_exp = "ctf_pressure"
+                    modename_exp = "capture the flag"
+                    daterel_exp = "july 24th, 2025"
+                    loopy = false
+                    ctfpressure = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 211) {
+                    ran = ran + 1
+
+                }
+                
+                if (ran == 212 && kothasshole == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/kothasshole.png"
+                    inname_exp = "mannhole"
+                    filename_exp = "koth_mannhole"
+                    modename_exp = "king of the hill"
+                    daterel_exp = "july 24th, 2025"
+                    loopy = false
+                    kothasshole = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 212) {
+                    ran = ran + 1
+
+                }
+                
+                if (ran == 213 && adconifer == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/adconifer.png"
+                    inname_exp = "conifer"
+                    filename_exp = "cp_conifer"
+                    modename_exp = "attack/defend"
+                    daterel_exp = "july 24th, 2025"
+                    loopy = false
+                    adconifer = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 213) {
+                    ran = ran + 1
+
+                }
+                
+                if (ran == 214 && kothblowout == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/kothblowout.png"
+                    inname_exp = "blowout"
+                    filename_exp = "koth_blowout"
+                    modename_exp = "king of the hill"
+                    daterel_exp = "july 24th, 2025"
+                    loopy = false
+                    kothblowout = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 214) {
+                    ran = ran + 1
+
+                }
+                
+                if (ran == 215 && adcargo == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/adcargo.png"
+                    inname_exp = "cargo"
+                    filename_exp = "cp_cargo"
+                    modename_exp = "attack/defend"
+                    daterel_exp = "july 24th, 2025"
+                    loopy = false
+                    adcargo = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 215) {
+                    ran = ran + 1
+
+                }
+                
+                if (ran == 216 && adfulgur == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/adfulgur.png"
+                    inname_exp = "fulgur"
+                    filename_exp = "cp_fulgur"
+                    modename_exp = "attack/defend"
+                    daterel_exp = "july 24th, 2025"
+                    loopy = false
+                    adfulgur = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 216) {
+                    ran = ran + 1
+
+                }
+                
+                if (ran == 217 && kothsmol == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/kothsmol.png"
+                    inname_exp = "demolition"
+                    filename_exp = "koth_demolition"
+                    modename_exp = "king of the hill"
+                    daterel_exp = "july 24th, 2025"
+                    loopy = false
+                    kothsmol = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 217) {
+                    ran = ran + 1
+
+                }
+                
+                if (ran == 218 && kothlaughterspookyless == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/kothlaughterspookyless.png"
+                    inname_exp = "boardwalk"
+                    filename_exp = "koth_boardwalk"
+                    modename_exp = "king of the hill"
+                    daterel_exp = "july 24th, 2025"
+                    loopy = false
+                    kothlaughterspookyless = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 218) {
+                    ran = ran + 1
+
+                }
+                
+                if (ran == 219 && plfish == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/plfish.png"
+                    inname_exp = "aquarius"
+                    filename_exp = "pl_aquarius"
+                    modename_exp = "payload"
+                    daterel_exp = "july 24th, 2025"
+                    loopy = false
+                    plfish = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 219) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 220 && arenaafterlife == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/arenaafterlife.jpg"
+                    inname_exp = "afterlife"
+                    filename_exp = "arena_afterlife"
+                    modename_exp = "arena"
+                    daterel_exp = "october 9th, 2025"
+                    loopy = false
+                    arenaafterlife = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 220) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 221 && htfmarshlands == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/htfmarshlands.jpg"
+                    inname_exp = "marshlands"
+                    filename_exp = "sd_marshlands"
+                    modename_exp = "hold the flag"
+                    daterel_exp = "october 9th, 2025"
+                    loopy = false
+                    htfmarshlands = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 221) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 222 && kothduskroof == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/kothduskroof.jpg"
+                    inname_exp = "dusker"
+                    filename_exp = "koth_dusker"
+                    modename_exp = "king of the hill"
+                    daterel_exp = "october 9th, 2025"
+                    loopy = false
+                    kothduskroof = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 222) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 223 && cpcower == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/cpcower.png"
+                    inname_exp = "cowerhouse"
+                    filename_exp = "cp_cowerhouse"
+                    modename_exp = "control points"
+                    daterel_exp = "october 9th, 2025"
+                    loopy = false
+                    cpcower = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 223) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 224 && ctfdevilcross == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/ctfdevilcross.jpg"
+                    inname_exp = "devilcross"
+                    filename_exp = "ctf_doublecross_event"
+                    modename_exp = "capture the flag"
+                    daterel_exp = "october 9th, 2025"
+                    loopy = false
+                    ctfdevilcross = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 224) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 225 && kothabbey == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/kothabbey.png"
+                    inname_exp = "abbey"
+                    filename_exp = "2koth_abbey"
+                    modename_exp = "king of the hill"
+                    daterel_exp = "december 9th, 2025"
+                    loopy = false
+                    kothabbey = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 225) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 226 && pdcringe == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/pdcringe.png"
+                    inname_exp = "nutcracker"
+                    filename_exp = "pd_nutcracker"
+                    modename_exp = "player destruction"
+                    daterel_exp = "december 9th, 2025"
+                    loopy = false
+                    pdcringe = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 226) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 227 && kothwhyanotherreskin == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/kothwhyanotherreskin.png"
+                    inname_exp = "winter ridge"
+                    filename_exp = "koth_winter_ridge"
+                    modename_exp = "king of the hill"
+                    daterel_exp = "december 9th, 2025"
+                    loopy = false
+                    kothwhyanotherreskin = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 227) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 228 && cpplgavle == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/cpplgavle.png"
+                    inname_exp = "gavle"
+                    filename_exp = "cppl_gavle"
+                    modename_exp = "control point/payload"
+                    daterel_exp = "december 9th, 2025"
+                    loopy = false
+                    cpplgavle = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 228) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 229 && ctfwindy == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/ctfwindy.png"
+                    inname_exp = "sidewinder"
+                    filename_exp = "ctf_sidewinder"
+                    modename_exp = "capture the flag"
+                    daterel_exp = "december 9th, 2025"
+                    loopy = false
+                    ctfwindy = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 229) {
+                    ran = ran + 1
+
+                }
+
+                if (ran == 230 && plrmatterhorn == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/plrmatterhorn.png"
+                    inname_exp = "matterhorn"
+                    filename_exp = "plr_matterhorn"
+                    modename_exp = "payload race"
+                    daterel_exp = "december 9th, 2025"
+                    loopy = false
+                    plrmatterhorn = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 230) {
+                    ran = ran + 1
+
+                }
+                
+                if (ran == 231 && plsitdown == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/plsitdown.png"
+                    inname_exp = "citadel"
+                    filename_exp = "pl_citadel"
+                    modename_exp = "payload"
+                    daterel_exp = "july 24th, 2025"
+                    loopy = false
+                    plsitdown = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 231 && endsuffering == true) {
+                    ran = 1
+
+                }// ==================================0000000
+            }
+            console.log("maxguesses = " + totalmaps)
+            console.log("mapchange = " + ran)
+
+            /*
+            if (ran == 20 &&  == true) {
+                    document.getElementById("tfdisplay").src = "assets/game/.png"
+                    inname_exp = ""
+                    filename_exp = ""
+                    modename_exp = ""
+                    daterel_exp = ""
+                    loopy = false
+                     = false
+                    totalmaps = totalmaps - 1
+                }
+                else if (ran == 20) {
+                    ran = ran + 1
+
+                }
+                
+                && endsuffering == true
+                */
+
+        }
+
+        function playagain() { // ============================================================
+
+            totalmaps = 0
+            total_points = 0
+            endsuffering = true
+
+            // ========================================================================
+
+            ingood = 0
+            inbad = 0
+            intotal = 0
+
+            filegood = 0
+            filebad = 0
+            filetotal = 0
+
+            modegood = 0
+            modebad = 0
+            modetotal = 0
+
+            dategood = 0
+            datebad = 0
+            datetotal = 0
+
+            document.getElementById("butt").style.backgroundColor = "rgb(78, 157, 78)"
+            document.getElementById("butt").textContent = "Submit"
+            document.getElementById("butt").setAttribute("onmouseover", "javascript: buttoncolor1();");
+            document.getElementById("butt").setAttribute("onmouseleave", "javascript: buttoncolor2();");
+            document.getElementById("butt").setAttribute("onclick", "javascript: pointstuff();");
+            
+            Setsetting()
+        }
+
+
+        function pointstuff() {
+
+
+            inname = document.getElementById("inp_inname").value;
+            filename = document.getElementById("inp_filename").value;
+            modename = document.getElementById("inp_modename").value;
+            daterel = document.getElementById("inp_daterel").value;
+
+            point_inname = 0
+            point_filename = 0
+            point_modename = 0
+            point_daterel = 0
+
+            if (inname == inname_exp) {
+                point_inname = 5
+                intotal = intotal + 5
+                ingood = ingood + 1
+            }
+            else {
+                point_inname = -10
+                intotal = intotal - 10
+                inbad = inbad + 1
+
+            }
+
+            if (filename == filename_exp) {
+                point_filename = 6
+                filetotal = filetotal + 6
+                filegood = filegood + 1
+            }
+            else {
+                point_filename = -5
+                filetotal = filetotal - 5
+                filebad = filebad + 1
+            }
+
+            if (modename == modename_exp) {
+                point_modename = 5
+                modetotal = modetotal + 5
+                modegood = modegood + 1
+            }
+            else {
+                point_modename = -6
+                modetotal = modetotal - 6
+                modebad = modebad + 1
+            }
+
+            if (daterel == daterel_exp) {
+                point_daterel = 10
+                datetotal = datetotal + 10
+                dategood = dategood + 1
+            }
+            else {
+                point_daterel = -2
+                datetotal = datetotal - 2
+                datebad = datebad + 1
+            }
+
+            point_summer = point_inname + point_filename + point_modename + point_daterel
+
+            total_points = total_points + point_summer
+
+            if (total_points < 0) {
+                total_points = 0
+            }
+
+            if (intotal < 0) {
+                intotal = 0
+            }
+            if (filetotal < 0) {
+                filetotal = 0
+            }
+            if (modetotal < 0) {
+                modetotal = 0
+            }
+            if (datetotal < 0) {
+                datetotal = 0
+            }
+
+            console.log("Total points are now " + total_points)
+
+            totalshow = "Your Total Points: " + total_points
+
+            document.getElementById("tpd").textContent = totalshow
+
+            submitted()
+
+        }
+
+        function submitted() {
+
+
+            if (inname == inname_exp) {
+                document.getElementById("inp_inname").style.backgroundColor = "green"
+            }
+            else {
+                document.getElementById("inp_inname").style.backgroundColor = "darkred"
+            }
+
+            if (filename == filename_exp) {
+                document.getElementById("inp_filename").style.backgroundColor = "green"
+            }
+            else {
+                document.getElementById("inp_filename").style.backgroundColor = "darkred"
+            }
+
+            if (modename == modename_exp) {
+                document.getElementById("inp_modename").style.backgroundColor = "green"
+            }
+            else {
+                document.getElementById("inp_modename").style.backgroundColor = "darkred"
+            }
+
+            if (daterel == daterel_exp) {
+                document.getElementById("inp_daterel").style.backgroundColor = "green"
+            }
+            else {
+                document.getElementById("inp_daterel").style.backgroundColor = "darkred"
+            }
+
+            buttonstylereset()
+            document.getElementById("butt").textContent = "Next Map"
+            document.getElementById("butt").setAttribute("onclick", "javascript: nextmap();");
+
+            if (totalmaps == 0) {
+                loopy = false
+                console.log("completed")
+
+                document.getElementById("inscore").textContent = "Ingame Name: " + ingood + " Correct! | " +inbad+ " Incorrect :( | Total Points: " +intotal 
+                document.getElementById("filescore").textContent = "File Name: " + filegood + " Correct! | " +filebad+ " Incorrect :( | Total Points: " +filetotal 
+                document.getElementById("modescore").textContent = "Gamemode: " + modegood + " Correct! | " +modebad+ " Incorrect :( | Total Points: " +modetotal 
+                document.getElementById("datescore").textContent = "Date Released: " + dategood + " Correct! | " +datebad+ " Incorrect :( | Total Points: " +datetotal 
+
+                totalguess = "You have " + totalmaps + " maps left!"
+                document.getElementById("guessesleft").textContent = totalguess
+                document.getElementById("butt").style.backgroundColor = "rgb(71, 71, 180)";
+
+                document.getElementById("butt").textContent = "Play Again"
+                document.getElementById("butt").setAttribute("onmouseover", "javascript: buttoncolor3();");
+                document.getElementById("butt").setAttribute("onmouseleave", "javascript: buttoncolor4();");
+                document.getElementById("butt").setAttribute("onclick", "javascript: playagain();");
+
+            }
+
+        }
+
+        function nextmap() {
+
+            document.getElementById("inp_inname").value = "";
+            document.getElementById("inp_filename").value = "";
+            document.getElementById("inp_modename").value = "";
+            document.getElementById("inp_daterel").value = "";
+
+            document.getElementById("inp_inname").style.backgroundColor = "tan"
+            document.getElementById("inp_filename").style.backgroundColor = "tan"
+            document.getElementById("inp_modename").style.backgroundColor = "tan"
+            document.getElementById("inp_daterel").style.backgroundColor = "tan"
+
+            pickmap()
+
+            buttonstylereset()
+            document.getElementById("butt").textContent = "Submit"
+            document.getElementById("butt").setAttribute("onclick", "javascript: pointstuff();");
+
+        }
+
+        function Setsetting() {
+
+            totalmaps = 0
+            
+            adconifer = false
+            kothblowout = false
+            adcargo = false
+            adfulgur = false
+            kothsmol = false
+            kothlaughterspookyless =  false
+            plfish = false
+            plsitdown = false
+            kothasshole = false
+            ctfpressure = false
+            plupward = false
+            addarkmarsh = false
+            trtarget = false
+            kothlakeside = false
+            passtemplate = false
+            ziblazehattan = false
+            pdatomsmash = false
+            ctf2fort = false
+            arbadlands = false
+            ctfapplejack = false
+            adfortezza = false
+            meddegrootkeep = false
+            cpgullywash = false
+            plrhacksaw = false
+            plcashworks = false
+            kothslime = false
+            adaltitude = false
+            cpcloak = false
+            aroffblast = false
+            ctfhelltrain = false
+            adsnowplow = false
+            medburghausen = false
+            cpstandin = false
+            cpwell = false
+            kothsuijin = false
+            mpthundermountain = false
+            mvmdecoy = false
+            passdistrict = false
+            plbarnblitz = false
+            plrnightfall = false
+            pdfarmageddon = false
+            rdasteroid = false
+            sddoomsday = false
+            tchydro = false
+            trdustbowl = false
+            towdynamite = false
+            vshnucleus = false
+            ziatoll = false
+            mvmexample = false
+            arravine = false
+            ctfdoublefrost = false
+            adjunction = false
+            adgorge = false
+            medsandcastle = false
+            cpfastlane = false
+            cppowerhouse = false
+            kothcascade = false
+            kothmegaton = false
+            kothtoxic = false
+            mpgorge = false
+            mvmcoaltown = false
+            passtimbertown = false
+            plbadwater = false
+            plembargo = false
+            plodyssey = false
+            plthundermountain = false
+            pdmannsylvania = false
+            sdcoc = false
+            vshmaul = false
+            zisanitarium = false
+            othdevtest = false
+            arbyre = false
+            ctfcrasher = false
+            adcarrier = false
+            adhardwood = false
+            adsteel = false
+            cp5gorge = false
+            cpsnakewater = false
+            kothking = false
+            kothnucleus = false
+            kotheyeaduct = false
+            mphellfire = false
+            mvmrottenburg = false
+            passbrickyard = false
+            plborneo = false
+            plcorruption = false
+            plprecipice = false
+            plwutville = false
+            plrbanana = false
+            pdgalleria = false
+            vshskirmish = false
+            zimurky = false
+            othitemtest = false
+            argraveyard = false
+            ctfsawmill = false
+            adfrostwatch = false
+            adhadal = false
+            admossrock = false
+            cpcoldfront = false
+            cpmetalworks = false
+            cpyukon = false
+            kothcachoeira = false
+            kothmegalo = false
+            kothslasher = false
+            mpfoundry = false
+            mvmmannhattan = false
+            plcactus = false
+            plpatagonia = false
+            plvenice = false
+            plrhightower = false
+            pdbottemlesspit = false
+            vshdistillery = false
+            ziwoods = false
+            othbackground01 = false
+            argranary = false
+            ctfdoublecross = false
+            adhaarp = false
+            adspookeyridge = false
+            cpfreakyfair = false
+            cpvanguard = false
+            kothlaughter = false
+            kothovercast = false
+            kothviaduct = false
+            mvmghosttown = false
+            plbrimstone = false
+            plphoenix = false
+            plhasslecastle = false
+            plpipeline = false
+            pdcursedcove = false
+            vshoutburst = false
+            zihl2e1 = false
+            othcloak = false
+            arnucleus = false
+            ctfturbine = false
+            addustbowl = false
+            adovergrown = false
+            cpbadlands = false
+            kothhighpass = false
+            kothrotunda = false
+            mvmmannworks = false
+            plpier = false
+            plrcutyoass = false
+            pdselbyen = false
+            vshtinyrock = false
+            arsawmill = false
+            ctflandfall = false
+            adegypt = false
+            admountainlab = false
+            adsulfur = false
+            cpcanaveral = false
+            kothbrazil = false
+            kothmoonshine = false
+            mvmbigrock = false
+            plcamber = false
+            plrumford = false
+            plrbonesaw = false
+            pdcircus = false
+            arlumberyard = false
+            ctfwell = false
+            adgorgeevent = false
+            plemerge = false
+            cpfoundry = false
+            kothhmmbagel = false
+            kothsharkbay = false
+            plbloodwater = false
+            plchaos = false
+            pdwatergate = false
+            arwell = false
+            ctfpelican = false
+            adgravelpit = false
+            admanor = false
+            cpsunshine = false
+            kothkrampus = false
+            kothscarysawmill = false
+            plfrontier = false
+            plspineyard = false
+            plrhelltower = false
+            pdsnowville = false
+            arperks = false
+            ctffrosty = false
+            adcoalpit = false
+            cpreckoner = false
+            kothbadlands = false
+            kothsnowtower = false
+            plenclosure = false
+            plhoodoo = false
+            pdmonsters = false
+            arwatch = false
+            ctfpenguin = false
+            aderebus = false
+            cpgranary = false
+            kothharvest = false
+            kothsinthetic = false
+            plterror = false
+            plchilly = false
+            ctfenibrut = false
+            adlavapit = false
+            cpprocess = false
+            kothghostfort = false
+            plfrostcliff = false
+            ctfsnowfall = false
+            adbrew = false
+            cpsinshine = false
+            kothlazarus = false
+            plghoulpit = false
+            ctf2fortin = false
+            adyetipark = false
+            cpfreight = false
+            kothmapleridge = false
+            plbreadspace = false
+            kothmoldergrove = false
+            kothharvestevent = false
+            plsnowycoast = false
+            kothsawmill = false
+            plgoldrush = false
+            kothwall = false
+            plpolar = false
+            kothprobed = false
+            plswiftwater = false
+            plgravestone = false
+            arenaafterlife = false
+            cpcower = false
+            ctfdevilcross = false
+            htfmarshlands = false
+            kothduskroof = false
+            kothabbey = false
+            cpplgavle = false
+            plrmatterhorn = false
+            pdcringe = false
+            ctfwindy = false
+            kothwhyanotherreskin = false
+
+            if (ValveMaps == true) {
+
+                if (normal == true) {
+
+                arbadlands = true
+                arwell = true
+                arsawmill = true
+                arlumberyard = true
+                arravine = true
+                arnucleus = true
+                argranary = true
+                adgorge = true
+                adyetipark = true
+                admountainlab = true
+                addustbowl = true
+                adgravelpit = true
+                cpbadlands = true
+                cp5gorge = true
+                cpcloak = true
+                cpwell = true
+                cpprocess = true
+                cpgranary = true
+                cpfoundry = true
+                cppowerhouse = true
+                ctf2fort = true
+                ctfsawmill = true
+                ctfdoublecross = true
+                ctfwell = true
+                kothnucleus = true
+                kothviaduct = true
+                kothsawmill = true
+                kothbadlands = true
+                meddegrootkeep = true
+                mvmdecoy = true
+                mvmexample = true
+                mvmcoaltown = true
+                mvmrottenburg = true
+                mvmmannhattan = true
+                mvmmannworks = true
+                mvmbigrock = true
+                mpfoundry = true
+                mpthundermountain = true
+                mpgorge = true
+                mphellfire = true
+                plpipeline = true
+                plrhightower = true
+                plthundermountain = true
+                plbadwater = true
+                plupward = true
+                plbarnblitz = true
+                plgoldrush = true
+                plcactus = true
+                othdevtest = true
+                othitemtest = true
+                othbackground01 = true
+                othcloak = true
+                passdistrict = true
+                passtimbertown = true
+                passbrickyard = true
+                passtemplate = true
+                rdasteroid = true
+                sddoomsday = true
+                tchydro = true
+                trtarget = true
+                trdustbowl = true
+
+                totalmaps = totalmaps + 61
+
+                }
+
+                if (halloween == true) {
+                
+                admanor = true
+                kotheyeaduct = true
+                kothghostfort = true
+                kothharvestevent = true
+                mvmghosttown = true
+                plrhelltower = true
+                sdcoc = true
+
+                totalmaps = totalmaps + 7
+
+                }
+
+            }
+
+            if (CommunityMaps == true) {
+
+                if (normal == true) {
+
+                aroffblast = true
+                arwatch = true
+                adbrew = true
+                arbyre = true
+                adcargo = true
+                adfulgur = true
+                adconifer = true
+                adfortezza = true
+                adaltitude = true
+                adsnowplow = true
+                adjunction = true
+                adsulfur = true
+                adhardwood = true
+                adsteel = true
+                adhadal = true
+                admossrock = true
+                adegypt = true
+                adovergrown = true
+                cpplgavle = true
+                cpgullywash = true
+                cpstandin = true
+                cpfastlane = true
+                cpreckoner = true
+                cpsnakewater = true
+                cpcoldfront = true
+                cpmetalworks = true
+                cpyukon = true
+                cpvanguard = true
+                cpcanaveral = true
+                cpsunshine = true
+                cpfreight = true
+                adhaarp = true
+                ctf2fortin = true
+                ctfpressure = true
+                ctfapplejack = true
+                ctfpelican = true
+                ctfpenguin = true
+                ctffrosty = true
+                ctfturbine = true
+                ctflandfall = true
+                ctfwindy = true
+                kothabbey = true
+                kothblowout = true
+                kothsmol = true
+                kothlaughterspookyless =  true
+                kothovercast = true
+                kothasshole = true
+                kothlakeside = true
+                kothsuijin = true
+                kothcascade = true
+                kothmegaton = true
+                kothking = true
+                kothcachoeira = true
+                kothhighpass = true
+                kothlazarus = true
+                kothrotunda = true
+                kothbrazil = true
+                kothsharkbay = true
+                kothsnowtower = true
+                kothharvest = true
+                kothprobed = true
+                kothwhyanotherreskin = true
+                medburghausen = true
+                pdatomsmash = true
+                pdwatergate = true
+                pdselbyen = true
+                plrhacksaw = true
+                plrnightfall = true
+                plrbanana = true
+                plfish = true
+                plemerge = true
+                plembargo = true
+                plsitdown = true
+                plcashworks = true
+                plodyssey = true
+                plborneo = true
+                plpatagonia = true
+                plvenice = true
+                plbreadspace = true
+                plsnowycoast = true
+                plphoenix = true
+                plpier = true
+                plcamber = true
+                plenclosure = true
+                plrumford = true
+                plhoodoo = true
+                plswiftwater = true
+                plfrontier = true
+                vshnucleus = true
+                vshskirmish = true
+                vshdistillery = true
+                vshtinyrock = true
+
+                totalmaps = totalmaps + 92
+
+                }
+
+                if (halloween == true) {
+                
+                arenaafterlife = true
+                arperks = true
+                argraveyard = true
+                adlavapit = true
+                adgorgeevent = true
+                addarkmarsh = true
+                aderebus = true
+                adspookeyridge = true
+                cpcower = true
+                cpsinshine = true
+                cpfreakyfair = true
+                ctfdevilcross = true
+                ctfhelltrain = true
+                ctfcrasher = true
+                kothduskroof = true
+                kothlaughter = true
+                kothslime = true
+                kothtoxic = true
+                kothsinthetic = true
+                kothmegalo = true
+                kothslasher = true
+                kothmoonshine = true
+                kothhmmbagel = true
+                kothmoldergrove = true
+                kothmapleridge = true
+                kothwall = true
+                kothscarysawmill = true
+                medsandcastle = true
+                pdfarmageddon = true
+                pdcursedcove = true
+                pdcircus = true
+                pdmannsylvania = true
+                pdbottemlesspit = true
+                pdmonsters = true
+                plrbonesaw = true
+                plcorruption = true
+                plterror = true
+                plprecipice = true
+                plghoulpit = true
+                plbrimstone = true
+                plhasslecastle = true
+                plbloodwater = true
+                plchaos = true
+                plgravestone = true
+                plspineyard = true
+                towdynamite = true
+                htfmarshlands = true
+                vshoutburst = true
+                zihl2e1 = true
+                ziwoods = true
+                zimurky = true
+                zisanitarium = true
+                ziatoll = true
+                ziblazehattan = true
+
+                totalmaps = totalmaps + 54
+
+                }
+
+                if (christmas == true) {
+
+                adfrostwatch = true
+                adcoalpit = true
+                adcarrier = true
+                ctfdoublefrost = true
+                ctfenibrut = true
+                ctfsnowfall = true
+                kothkrampus = true
+                pdcringe = true
+                pdgalleria = true
+                pdsnowville = true
+                plrcutyoass = true
+                plchilly = true
+                plwutville = true
+                plpolar = true
+                plfrostcliff = true
+                plrmatterhorn = true
+                vshmaul = true
+
+                totalmaps = totalmaps + 17
+
+                }
+
+            }
+            
+            document.getElementById("tfdisplay").src = "assets/game/error.jpg"
+            totalshow = "Your Total Points: 0"
+            document.getElementById("tpd").textContent = totalshow
+
+            document.getElementById("inscore").textContent = ""
+            document.getElementById("filescore").textContent = ""
+            document.getElementById("modescore").textContent = ""
+            document.getElementById("datescore").textContent = ""
+
+
+            document.getElementById("inp_inname").value = "";
+            document.getElementById("inp_filename").value = "";
+            document.getElementById("inp_modename").value = "";
+            document.getElementById("inp_daterel").value = "";
+
+            document.getElementById("inp_inname").style.backgroundColor = "tan"
+            document.getElementById("inp_filename").style.backgroundColor = "tan"
+            document.getElementById("inp_modename").style.backgroundColor = "tan"
+            document.getElementById("inp_daterel").style.backgroundColor = "tan"
+
+            pickmap()
+        }
+
+    </script>
+</body>
+
+</html>
