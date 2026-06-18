@@ -43,7 +43,7 @@
         }
 
         button {
-                    width: 300px;
+                    width: 160px;
                     border-radius: 50px;
                     float: center;
                     margin-right: 10px;
@@ -66,10 +66,12 @@
     <a href="index.html">Go Back</a>
     <h1>What is the name of this Team Fortress 2 map?</h1>
 
+    
+    <h3>
     <img class="photo" id="tfdisplay"
-        style="display: block;-webkit-user-select: none;margin: auto;cursor: zoom-in;background-color: hsl(0, 0%, 90%);transition: background-color 300ms;"
         src="assets/game/error.jpg" width="772" height="434">
     </img>
+    </h3>
     <h3 id="tpd">
         Your Total Points: 0
     </h3>
@@ -106,15 +108,124 @@
         Settings
     </h3>
     <h3>
-        <button id="buttsetting2" onclick="ValveOFF()" onmouseover="valvebc1()" onmouseleave="valvebc2()"> Valve Maps </button>
-        <button id="buttsetting1" onclick="CommunityOFF()" onmouseover="communitybc1()" onmouseleave="communitybc2()"> Community Maps </button>
+        Changing the settings will restart the game!
     </h3>
     <h3>
-        <button id="buttnormal" onclick="normalOFF()" onmouseover="normalbc1()" onmouseleave="normalbc2()"> Normal Maps </button>
-        <button id="butthalloween" onclick="halloweenOFF()" onmouseover="halloweenbc1()" onmouseleave="halloweenbc2()"> Halloween Maps </button>
-        <button id="buttchristmas" onclick="christmasOFF()" onmouseover="christmasbc1()" onmouseleave="christmasbc2()"> Christmas Maps </button>
+        <button id="buttsetting2" onclick="ValveOFF()" onmouseover="valvebc1()" onmouseleave="valvebc2()"> 
+            <img class="photo" id="valvemaps_butt"
+            src="assets/words/other/valve_maps.png" width="100" height="100">
+        </img></button>
+
+        <button id="buttsetting1" onclick="CommunityOFF()" onmouseover="communitybc1()" onmouseleave="communitybc2()"> <img class="photo" id="communitymaps_butt"
+            src="assets/words/other/community_maps.png" width="100" height="100">
+        </img></button>
+    </h3>
+    <h3>
+        <button id="buttnormal" onclick="normalOFF()" onmouseover="normalbc1()" onmouseleave="normalbc2()"><img class="photo" id="normalmaps_butt"
+            src="assets/words/other/normal.png" width="100" height="100">
+        </img></button>
+
+
+        <button id="butthalloween" onclick="halloweenOFF()" onmouseover="halloweenbc1()" onmouseleave="halloweenbc2()"><img class="photo" id="halloweenmaps_butt"
+            src="assets/words/other/halloween.png" width="100" height="100">
+        </img></button>
+
+
+        <button id="buttchristmas" onclick="christmasOFF()" onmouseover="christmasbc1()" onmouseleave="christmasbc2()"><img class="photo" id="christmasmaps_butt"
+            src="assets/words/other/christmas.png" width="100" height="100">
+        </img></button>
+    </h3>
+    <h3>
+        <button id="buttarena" onclick="arenaOFF()" onmouseover="arenabc1()" onmouseleave="arenabc2()"><img class="photo" id="arenamaps_butt"
+            src="assets/words/gamemode/arena.png" width="100" height="100">
+        </img></button>
+
+        <button id="buttattdef" onclick="attdefOFF()" onmouseover="attdefbc1()" onmouseleave="attdefbc2()"><img class="photo" id="attdefmaps_butt"
+            src="assets/words/gamemode/attack_defend.png" width="100" height="100">
+        </img></button>
+
+        <button id="buttcapflag" onclick="capflagOFF()" onmouseover="capflagbc1()" onmouseleave="capflagbc2()"><img class="photo" id="capflagmaps_butt"
+            src="assets/words/gamemode/capture_the_flag.png" width="100" height="100">
+        </img></button>
+
+        <button id="buttcontrolpoint" onclick="controlpointOFF()" onmouseover="controlpointbc1()" onmouseleave="controlpointbc2()"><img class="photo" id="controlpointmaps_butt"
+            src="assets/words/gamemode/control_point.png" width="100" height="100">
+        </img></button>
+
+        <button id="buttholdflag" onclick="holdflagOFF()" onmouseover="holdflagbc1()" onmouseleave="holdflagbc2()"><img class="photo" id="holdflagmaps_butt"
+            src="assets/words/gamemode/hold_the_flag.png" width="100" height="100">
+        </img></button>
+
+        <button id="butthybrid" onclick="hybridOFF()" onmouseover="hybridbc1()" onmouseleave="hybridbc2()"><img class="photo" id="hybridmaps_butt"
+            src="assets/words/gamemode/hybrid.png" width="100" height="100">
+        </img></button>
+
+        <button id="buttkoth" onclick="kothOFF()" onmouseover="kothbc1()" onmouseleave="kothbc2()"><img class="photo" id="kothmaps_butt"
+            src="assets/words/gamemode/king_of_the_hill.png" width="100" height="100">
+        </img></button>
+
+        <button id="buttmann" onclick="mannOFF()" onmouseover="mannbc1()" onmouseleave="mannbc2()"><img class="photo" id="mannmaps_butt"
+            src="assets/words/gamemode/mann_vs_machine.png" width="100" height="100">
+        </img></button>
+
+        <button id="buttpower" onclick="powerOFF()" onmouseover="powerbc1()" onmouseleave="powerbc2()"><img class="photo" id="powermaps_butt"
+            src="assets/words/gamemode/mannpower.png" width="100" height="100">
+        </img></button>
+
+        <button id="buttmedieval" onclick="medievalOFF()" onmouseover="medievalbc1()" onmouseleave="medievalbc2()"><img class="photo" id="medievalmaps_butt"
+            src="assets/words/gamemode/medieval.png" width="100" height="100">
+        </img></button>
+
+        <button id="buttother" onclick="otherOFF()" onmouseover="otherbc1()" onmouseleave="otherbc2()"><img class="photo" id="othermaps_butt"
+            src="assets/words/gamemode/other.png" width="100" height="100">
+        </img></button>
+
+        <button id="buttpass" onclick="passOFF()" onmouseover="passbc1()" onmouseleave="passbc2()"><img class="photo" id="passmaps_butt"
+            src="assets/words/gamemode/pass_time.png" width="100" height="100">
+        </img></button>
+
+        <button id="buttpayload" onclick="payloadOFF()" onmouseover="payloadbc1()" onmouseleave="payloadbc2()"><img class="photo" id="payloadmaps_butt"
+            src="assets/words/gamemode/payload.png" width="100" height="100">
+        </img></button>
+
+        <button id="buttpayloadrace" onclick="payloadraceOFF()" onmouseover="payloadracebc1()" onmouseleave="payloadracebc2()"><img class="photo" id="payloadracemaps_butt"
+            src="assets/words/gamemode/payload_race.png" width="100" height="100">
+        </img></button>
+
+        <button id="buttplayerdest" onclick="playerdestOFF()" onmouseover="playerdestbc1()" onmouseleave="playerdestbc2()"><img class="photo" id="playerdestmaps_butt"
+            src="assets/words/gamemode/player_destruction.png" width="100" height="100">
+        </img></button>
+
+        <button id="buttrobotdest" onclick="robotdestOFF()" onmouseover="robotdestbc1()" onmouseleave="robotdestbc2()"><img class="photo" id="robotdestmaps_butt"
+            src="assets/words/gamemode/robot_destruction.png" width="100" height="100">
+        </img></button>
+
+        <button id="buttspecialdel" onclick="specialdelOFF()" onmouseover="specialdelbc1()" onmouseleave="specialdelbc2()"><img class="photo" id="specialdelmaps_butt"
+            src="assets/words/gamemode/special_delivery.png" width="100" height="100">
+        </img></button>
+
+        <button id="buttterror" onclick="terrorOFF()" onmouseover="terrorbc1()" onmouseleave="terrorbc2()"><img class="photo" id="terrormaps_butt"
+            src="assets/words/gamemode/territorial_control.png" width="100" height="100">
+        </img></button>
+
+        <button id="butttraining" onclick="trainingOFF()" onmouseover="trainingbc1()" onmouseleave="trainingbc2()"><img class="photo" id="trainingmaps_butt"
+            src="assets/words/gamemode/training.png" width="100" height="100">
+        </img></button>
+
+        <button id="butttugwar" onclick="tugwarOFF()" onmouseover="tugwarbc1()" onmouseleave="tugwarbc2()"><img class="photo" id="tugwarmaps_butt"
+            src="assets/words/gamemode/tug_of_war.png" width="100" height="100">
+        </img></button>
+
+        <button id="buttsexton" onclick="sextonOFF()" onmouseover="sextonbc1()" onmouseleave="sextonbc2()"><img class="photo" id="sextonmaps_butt"
+            src="assets/words/gamemode/versus_saxton_hale.png" width="100" height="100">
+        </img></button>
+
+        <button id="buttzombie" onclick="zombieOFF()" onmouseover="zombiebc1()" onmouseleave="zombiebc2()"><img class="photo" id="zombiemaps_butt"
+            src="assets/words/gamemode/zombie_infection.png" width="100" height="100">
+        </img></button>
     </h3>
 
+    <a href="https://wiki.teamfortress.com/wiki/Main_Page">Images taken from the Offcial TF2 Wiki</a>
 
     <h3>Please keep all letters lowercase.
         <style>
@@ -122,11 +233,10 @@
     </h3>
     <h3>Please type dates out like this: january 1, 2010</h3>
     <h3>Do not include '.bsp' when typing out the file name.</h3>
-    <a href="https://wiki.teamfortress.com/wiki/Main_Page">Images taken from the Offcial TF2 Wiki</a>
     <p>
         Gamemodes:
     </p>
-    <p>arena, attack/defend, capture the flag, control point, Hold The Flag, king of the hill, mannpower, mann vs machine, medieval,
+    <p>arena, attack/defend, capture the flag, control point, hold the flag, king of the hill, mannpower, mann vs machine, medieval,
         pass time, payload, payload race, player destruction, robot destruction, special delivery, territorial control,
         training, tug of war, versus saxton hale, zombie infection, other.</p>
     <h6>
@@ -137,17 +247,18 @@
         On correct answer:
     </p>
     <p>
-        Ingame Name = +5 points
+        Ingame Name = +2 points
     </p>
     <p>
-        Gamemode = +5 points
+        Gamemode = +1 points
     </p>
     <p>
-        File Name = +6 points
+        File Name = +3 points
     </p>
     <p>
-        Date Released = +10 points
+        Date Released = +5 points
     </p>
+
     <h6>
         =
     </h6>
@@ -156,22 +267,26 @@
         On incorrect answer:
     </p>
     <p>
-        Ingame Name = -10 points
+        Ingame Name = -2 points
     </p>
     <p>
-        Gamemode = -6 points
+        Gamemode = -1 points
     </p>
+    <!--
     <p>
         File Name = -5 points
     </p>
     <p>
         Date Released = -2 points
     </p>
+    -->
 
 
     <script>
 
         var loopy = true
+
+        var no = false
 
         var totalshow = "Your Total Points: 0"
         var totalguess = "You have 8 guesses left!"
@@ -183,6 +298,29 @@
         var halloween = true
         var normal = true
         var christmas = true
+
+        var arena = true
+        var attackdefend = true
+        var capturetheflag = true
+        var controlpoint = true
+        var holdtheflag = true
+        var hybrid = true
+        var kingofthehill = true
+        var mannvsmachine = true
+        var mannpower = true
+        var medieval = true
+        var other = true
+        var passtime = true
+        var payload = true
+        var payloadrace = true
+        var playerdestruction = true
+        var robotdestruction = true
+        var specialdelivery = true
+        var territorialcontrol = true
+        var training = true
+        var tugofwar = true
+        var versussaxtonhale = true
+        var zombieinfection = true
 
         // boos
         var ctf2fort = true
@@ -460,6 +598,7 @@
         pickmap()
 
         function buttonfix() {
+            document.getElementById("butt").style.width = "300px"
             document.getElementById("butt").setAttribute("onclick", "javascript: pointstuff();");
             document.getElementById("buttsetting1").setAttribute("onclick", "javascript: CommunityOFF();");
             document.getElementById("buttsetting2").setAttribute("onclick", "javascript: ValveOFF();");
@@ -480,10 +619,936 @@
             document.getElementById("buttchristmas").setAttribute("onmouseover", "javascript: christmasbc1();");
             document.getElementById("buttchristmas").setAttribute("onmouseleave", "javascript: christmasbc2();");
 
+            document.getElementById("buttarena").setAttribute("onmouseover", "javascript: arenabc1();");
+            document.getElementById("buttarena").setAttribute("onmouseleave", "javascript: arenabc2();");
+            document.getElementById("buttattdef").setAttribute("onmouseover", "javascript: attdefbc1();");
+            document.getElementById("buttattdef").setAttribute("onmouseleave", "javascript: attdefbc2();");
+            document.getElementById("buttcapflag").setAttribute("onmouseover", "javascript: capflagbc1();");
+            document.getElementById("buttcapflag").setAttribute("onmouseleave", "javascript: capflagbc2();");
+            document.getElementById("buttcontrolpoint").setAttribute("onmouseover", "javascript: controlpointbc1();");
+            document.getElementById("buttcontrolpoint").setAttribute("onmouseleave", "javascript: controlpointbc2();");
+            document.getElementById("buttholdflag").setAttribute("onmouseover", "javascript: holdflagbc1();");
+            document.getElementById("buttholdflag").setAttribute("onmouseleave", "javascript: holdflagbc2();");
+            document.getElementById("butthybrid").setAttribute("onmouseover", "javascript: hybridbc1();");
+            document.getElementById("butthybrid").setAttribute("onmouseleave", "javascript: hybridbc2();");
+            document.getElementById("buttkoth").setAttribute("onmouseover", "javascript: kothbc1();");
+            document.getElementById("buttkoth").setAttribute("onmouseleave", "javascript: kothbc2();");
+            document.getElementById("buttmann").setAttribute("onmouseover", "javascript: mannbc1();");
+            document.getElementById("buttmann").setAttribute("onmouseleave", "javascript: mannbc2();");
+            document.getElementById("buttpower").setAttribute("onmouseover", "javascript: powerbc1();");
+            document.getElementById("buttpower").setAttribute("onmouseleave", "javascript: powerbc2();");
+            document.getElementById("buttmedieval").setAttribute("onmouseover", "javascript: medievalbc1();");
+            document.getElementById("buttmedieval").setAttribute("onmouseleave", "javascript: medievalbc2();");
+            document.getElementById("buttother").setAttribute("onmouseover", "javascript: otherbc1();");
+            document.getElementById("buttother").setAttribute("onmouseleave", "javascript: otherbc2();");
+            document.getElementById("buttpass").setAttribute("onmouseover", "javascript: passbc1();");
+            document.getElementById("buttpass").setAttribute("onmouseleave", "javascript: passbc2();");
+            document.getElementById("buttpayload").setAttribute("onmouseover", "javascript: payloadbc1();");
+            document.getElementById("buttpayload").setAttribute("onmouseleave", "javascript: payloadbc2();");
+            document.getElementById("buttpayloadrace").setAttribute("onmouseover", "javascript: payloadracebc1();");
+            document.getElementById("buttpayloadrace").setAttribute("onmouseleave", "javascript: payloadracebc2();");
+            document.getElementById("buttplayerdest").setAttribute("onmouseover", "javascript: playerdestbc1();");
+            document.getElementById("buttplayerdest").setAttribute("onmouseleave", "javascript: playerdestbc2();");
+            document.getElementById("buttrobotdest").setAttribute("onmouseover", "javascript: robotdestbc1();");
+            document.getElementById("buttrobotdest").setAttribute("onmouseleave", "javascript: robotdestbc2();");
+            document.getElementById("buttspecialdel").setAttribute("onmouseover", "javascript: specialdelbc1();");
+            document.getElementById("buttspecialdel").setAttribute("onmouseleave", "javascript: specialdelbc2();");
+            document.getElementById("buttterror").setAttribute("onmouseover", "javascript: terrorbc1();");
+            document.getElementById("buttterror").setAttribute("onmouseleave", "javascript: terrorbc2();");
+            document.getElementById("butttraining").setAttribute("onmouseover", "javascript: trainingbc1();");
+            document.getElementById("butttraining").setAttribute("onmouseleave", "javascript: trainingbc2();");
+            document.getElementById("butttugwar").setAttribute("onmouseover", "javascript: tugwarbc1();");
+            document.getElementById("butttugwar").setAttribute("onmouseleave", "javascript: tugwarbc2();");
+            document.getElementById("buttsexton").setAttribute("onmouseover", "javascript: sextonbc1();");
+            document.getElementById("buttsexton").setAttribute("onmouseleave", "javascript: sextonbc2();");
+            document.getElementById("buttzombie").setAttribute("onmouseover", "javascript: zombiebc1();");
+            document.getElementById("buttzombie").setAttribute("onmouseleave", "javascript: zombiebc2();");
+
+        }
+
+        function zombieON() {
+            document.getElementById("zombiemaps_butt").src = "assets/words/gamemode/zombie_infection.png"
+            no = true
+            zombieinfection = true
+            document.getElementById("buttzombie").setAttribute("onclick", "javascript: zombieOFF();");
+            document.getElementById("buttzombie").setAttribute("onmouseover", "javascript: zombiebc1();");
+            document.getElementById("buttzombie").setAttribute("onmouseleave", "javascript: zombiebc2();");
+            document.getElementById("buttzombie").style.backgroundColor = "rgb(78, 157, 78)";
+
+            playagain()
+            Setsetting()
+        }
+        function zombieOFF() {
+            document.getElementById("zombiemaps_butt").src = "assets/words/gamemode/off/zombie_infection_off.png"
+            no = true
+            zombieinfection = false
+            document.getElementById("buttzombie").setAttribute("onclick", "javascript: zombieON();");
+            document.getElementById("buttzombie").setAttribute("onmouseover", "javascript: zombiebc3();");
+            document.getElementById("buttzombie").setAttribute("onmouseleave", "javascript: zombiebc4();");
+            document.getElementById("buttzombie").style.backgroundColor = "rgb(167, 52, 52)";
+
+            playagain()
+            Setsetting()
+        }
+        function zombiebc1() {
+            document.getElementById("buttzombie").style.backgroundColor = "rgb(78, 157, 78)";
+        }
+
+        function zombiebc2() {
+            document.getElementById("buttzombie").style.backgroundColor = "green";
+        }
+
+        function zombiebc3() {
+            document.getElementById("buttzombie").style.backgroundColor = "rgb(167, 52, 52)";
+        }
+
+        function zombiebc4() {
+            document.getElementById("buttzombie").style.backgroundColor = "rgb(121, 10, 10)";
+        }
+
+        function sextonON() {
+            document.getElementById("sextonmaps_butt").src = "assets/words/gamemode/versus_saxton_hale.png"
+            no = true
+            versussaxtonhale = true
+            document.getElementById("buttsexton").setAttribute("onclick", "javascript: sextonOFF();");
+            document.getElementById("buttsexton").setAttribute("onmouseover", "javascript: sextonbc1();");
+            document.getElementById("buttsexton").setAttribute("onmouseleave", "javascript: sextonbc2();");
+            document.getElementById("buttsexton").style.backgroundColor = "rgb(78, 157, 78)";
+
+            playagain()
+            Setsetting()
+        }
+        function sextonOFF() {
+            document.getElementById("sextonmaps_butt").src = "assets/words/gamemode/off/versus_saxton_hale_off.png"
+            no = true
+            versussaxtonhale = false
+            document.getElementById("buttsexton").setAttribute("onclick", "javascript: sextonON();");
+            document.getElementById("buttsexton").setAttribute("onmouseover", "javascript: sextonbc3();");
+            document.getElementById("buttsexton").setAttribute("onmouseleave", "javascript: sextonbc4();");
+            document.getElementById("buttsexton").style.backgroundColor = "rgb(167, 52, 52)";
+
+            playagain()
+            Setsetting()
+        }
+        function sextonbc1() {
+            document.getElementById("buttsexton").style.backgroundColor = "rgb(78, 157, 78)";
+        }
+
+        function sextonbc2() {
+            document.getElementById("buttsexton").style.backgroundColor = "green";
+        }
+
+        function sextonbc3() {
+            document.getElementById("buttsexton").style.backgroundColor = "rgb(167, 52, 52)";
+        }
+
+        function sextonbc4() {
+            document.getElementById("buttsexton").style.backgroundColor = "rgb(121, 10, 10)";
+        }
+
+        function tugwarON() {
+            document.getElementById("tugwarmaps_butt").src = "assets/words/gamemode/tug_of_war.png"
+            no = true
+            tugofwar = true
+            document.getElementById("butttugwar").setAttribute("onclick", "javascript: tugwarOFF();");
+            document.getElementById("butttugwar").setAttribute("onmouseover", "javascript: tugwarbc1();");
+            document.getElementById("butttugwar").setAttribute("onmouseleave", "javascript: tugwarbc2();");
+            document.getElementById("butttugwar").style.backgroundColor = "rgb(78, 157, 78)";
+
+            playagain()
+            Setsetting()
+        }
+        function tugwarOFF() {
+            document.getElementById("tugwarmaps_butt").src = "assets/words/gamemode/off/tug_of_war_off.png"
+            no = true
+            tugofwar = false
+            document.getElementById("butttugwar").setAttribute("onclick", "javascript: tugwarON();");
+            document.getElementById("butttugwar").setAttribute("onmouseover", "javascript: tugwarbc3();");
+            document.getElementById("butttugwar").setAttribute("onmouseleave", "javascript: tugwarbc4();");
+            document.getElementById("butttugwar").style.backgroundColor = "rgb(167, 52, 52)";
+
+            playagain()
+            Setsetting()
+        }
+        function tugwarbc1() {
+            document.getElementById("butttugwar").style.backgroundColor = "rgb(78, 157, 78)";
+        }
+
+        function tugwarbc2() {
+            document.getElementById("butttugwar").style.backgroundColor = "green";
+        }
+
+        function tugwarbc3() {
+            document.getElementById("butttugwar").style.backgroundColor = "rgb(167, 52, 52)";
+        }
+
+        function tugwarbc4() {
+            document.getElementById("butttugwar").style.backgroundColor = "rgb(121, 10, 10)";
+        }
+
+        function trainingON() {
+            document.getElementById("trainingmaps_butt").src = "assets/words/gamemode/training.png"
+            no = true
+            training = true
+            document.getElementById("butttraining").setAttribute("onclick", "javascript: trainingOFF();");
+            document.getElementById("butttraining").setAttribute("onmouseover", "javascript: trainingbc1();");
+            document.getElementById("butttraining").setAttribute("onmouseleave", "javascript: trainingbc2();");
+            document.getElementById("butttraining").style.backgroundColor = "rgb(78, 157, 78)";
+
+            playagain()
+            Setsetting()
+        }
+        function trainingOFF() {
+            document.getElementById("trainingmaps_butt").src = "assets/words/gamemode/off/training_off.png"
+            no = true
+            training = false
+            document.getElementById("butttraining").setAttribute("onclick", "javascript: trainingON();");
+            document.getElementById("butttraining").setAttribute("onmouseover", "javascript: trainingbc3();");
+            document.getElementById("butttraining").setAttribute("onmouseleave", "javascript: trainingbc4();");
+            document.getElementById("butttraining").style.backgroundColor = "rgb(167, 52, 52)";
+
+            playagain()
+            Setsetting()
+        }
+        function trainingbc1() {
+            document.getElementById("butttraining").style.backgroundColor = "rgb(78, 157, 78)";
+        }
+
+        function trainingbc2() {
+            document.getElementById("butttraining").style.backgroundColor = "green";
+        }
+
+        function trainingbc3() {
+            document.getElementById("butttraining").style.backgroundColor = "rgb(167, 52, 52)";
+        }
+
+        function trainingbc4() {
+            document.getElementById("butttraining").style.backgroundColor = "rgb(121, 10, 10)";
+        }
+
+        function terrorON() {
+            document.getElementById("terrormaps_butt").src = "assets/words/gamemode/territorial_control.png"
+            no = true
+            territorialcontrol = true
+            document.getElementById("buttterror").setAttribute("onclick", "javascript: terrorOFF();");
+            document.getElementById("buttterror").setAttribute("onmouseover", "javascript: terrorbc1();");
+            document.getElementById("buttterror").setAttribute("onmouseleave", "javascript: terrorbc2();");
+            document.getElementById("buttterror").style.backgroundColor = "rgb(78, 157, 78)";
+
+            playagain()
+            Setsetting()
+        }
+        function terrorOFF() {
+            document.getElementById("terrormaps_butt").src = "assets/words/gamemode/off/territorial_control_off.png"
+            no = true
+            territorialcontrol = false
+            document.getElementById("buttterror").setAttribute("onclick", "javascript: terrorON();");
+            document.getElementById("buttterror").setAttribute("onmouseover", "javascript: terrorbc3();");
+            document.getElementById("buttterror").setAttribute("onmouseleave", "javascript: terrorbc4();");
+            document.getElementById("buttterror").style.backgroundColor = "rgb(167, 52, 52)";
+
+            playagain()
+            Setsetting()
+        }
+        function terrorbc1() {
+            document.getElementById("buttterror").style.backgroundColor = "rgb(78, 157, 78)";
+        }
+
+        function terrorbc2() {
+            document.getElementById("buttterror").style.backgroundColor = "green";
+        }
+
+        function terrorbc3() {
+            document.getElementById("buttterror").style.backgroundColor = "rgb(167, 52, 52)";
+        }
+
+        function terrorbc4() {
+            document.getElementById("buttterror").style.backgroundColor = "rgb(121, 10, 10)";
+        }
+
+        function specialdelON() {
+            document.getElementById("specialdelmaps_butt").src = "assets/words/gamemode/special_delivery.png"
+            no = true
+            specialdelivery = true
+            document.getElementById("buttspecialdel").setAttribute("onclick", "javascript: specialdelOFF();");
+            document.getElementById("buttspecialdel").setAttribute("onmouseover", "javascript: specialdelbc1();");
+            document.getElementById("buttspecialdel").setAttribute("onmouseleave", "javascript: specialdelbc2();");
+            document.getElementById("buttspecialdel").style.backgroundColor = "rgb(78, 157, 78)";
+
+            playagain()
+            Setsetting()
+        }
+        function specialdelOFF() {
+            document.getElementById("specialdelmaps_butt").src = "assets/words/gamemode/off/special_delivery_off.png"
+            no = true
+            specialdelivery = false
+            document.getElementById("buttspecialdel").setAttribute("onclick", "javascript: specialdelON();");
+            document.getElementById("buttspecialdel").setAttribute("onmouseover", "javascript: specialdelbc3();");
+            document.getElementById("buttspecialdel").setAttribute("onmouseleave", "javascript: specialdelbc4();");
+            document.getElementById("buttspecialdel").style.backgroundColor = "rgb(167, 52, 52)";
+
+            playagain()
+            Setsetting()
+        }
+        function specialdelbc1() {
+            document.getElementById("buttspecialdel").style.backgroundColor = "rgb(78, 157, 78)";
+        }
+
+        function specialdelbc2() {
+            document.getElementById("buttspecialdel").style.backgroundColor = "green";
+        }
+
+        function specialdelbc3() {
+            document.getElementById("buttspecialdel").style.backgroundColor = "rgb(167, 52, 52)";
+        }
+
+        function specialdelbc4() {
+            document.getElementById("buttspecialdel").style.backgroundColor = "rgb(121, 10, 10)";
+        }
+
+        function robotdestON() {
+            document.getElementById("robotdestmaps_butt").src = "assets/words/gamemode/robot_destruction.png"
+            no = true
+            robotdestruction = true
+            document.getElementById("buttrobotdest").setAttribute("onclick", "javascript: robotdestOFF();");
+            document.getElementById("buttrobotdest").setAttribute("onmouseover", "javascript: robotdestbc1();");
+            document.getElementById("buttrobotdest").setAttribute("onmouseleave", "javascript: robotdestbc2();");
+            document.getElementById("buttrobotdest").style.backgroundColor = "rgb(78, 157, 78)";
+
+            playagain()
+            Setsetting()
+        }
+        function robotdestOFF() {
+            document.getElementById("robotdestmaps_butt").src = "assets/words/gamemode/off/robot_destruction_off.png"
+            no = true
+            robotdestruction = false
+            document.getElementById("buttrobotdest").setAttribute("onclick", "javascript: robotdestON();");
+            document.getElementById("buttrobotdest").setAttribute("onmouseover", "javascript: robotdestbc3();");
+            document.getElementById("buttrobotdest").setAttribute("onmouseleave", "javascript: robotdestbc4();");
+            document.getElementById("buttrobotdest").style.backgroundColor = "rgb(167, 52, 52)";
+
+            playagain()
+            Setsetting()
+        }
+        function robotdestbc1() {
+            document.getElementById("buttrobotdest").style.backgroundColor = "rgb(78, 157, 78)";
+        }
+
+        function robotdestbc2() {
+            document.getElementById("buttrobotdest").style.backgroundColor = "green";
+        }
+
+        function robotdestbc3() {
+            document.getElementById("buttrobotdest").style.backgroundColor = "rgb(167, 52, 52)";
+        }
+
+        function robotdestbc4() {
+            document.getElementById("buttrobotdest").style.backgroundColor = "rgb(121, 10, 10)";
+        }
+
+        function playerdestON() {
+            document.getElementById("playerdestmaps_butt").src = "assets/words/gamemode/player_destruction.png"
+            no = true
+            playerdestruction = true
+            document.getElementById("buttplayerdest").setAttribute("onclick", "javascript: playerdestOFF();");
+            document.getElementById("buttplayerdest").setAttribute("onmouseover", "javascript: playerdestbc1();");
+            document.getElementById("buttplayerdest").setAttribute("onmouseleave", "javascript: playerdestbc2();");
+            document.getElementById("buttplayerdest").style.backgroundColor = "rgb(78, 157, 78)";
+
+            playagain()
+            Setsetting()
+        }
+        function playerdestOFF() {
+            document.getElementById("playerdestmaps_butt").src = "assets/words/gamemode/off/player_destruction_off.png"
+            no = true
+            playerdestruction = false
+            document.getElementById("buttplayerdest").setAttribute("onclick", "javascript: playerdestON();");
+            document.getElementById("buttplayerdest").setAttribute("onmouseover", "javascript: playerdestbc3();");
+            document.getElementById("buttplayerdest").setAttribute("onmouseleave", "javascript: playerdestbc4();");
+            document.getElementById("buttplayerdest").style.backgroundColor = "rgb(167, 52, 52)";
+
+            playagain()
+            Setsetting()
+        }
+        function playerdestbc1() {
+            document.getElementById("buttplayerdest").style.backgroundColor = "rgb(78, 157, 78)";
+        }
+
+        function playerdestbc2() {
+            document.getElementById("buttplayerdest").style.backgroundColor = "green";
+        }
+
+        function playerdestbc3() {
+            document.getElementById("buttplayerdest").style.backgroundColor = "rgb(167, 52, 52)";
+        }
+
+        function playerdestbc4() {
+            document.getElementById("buttplayerdest").style.backgroundColor = "rgb(121, 10, 10)";
+        }
+
+        function payloadraceON() {
+            document.getElementById("payloadracemaps_butt").src = "assets/words/gamemode/payload_race.png"
+            no = true
+            payloadrace = true
+            document.getElementById("buttpayloadrace").setAttribute("onclick", "javascript: payloadraceOFF();");
+            document.getElementById("buttpayloadrace").setAttribute("onmouseover", "javascript: payloadracebc1();");
+            document.getElementById("buttpayloadrace").setAttribute("onmouseleave", "javascript: payloadracebc2();");
+            document.getElementById("buttpayloadrace").style.backgroundColor = "rgb(78, 157, 78)";
+
+            playagain()
+            Setsetting()
+        }
+        function payloadraceOFF() {
+            document.getElementById("payloadracemaps_butt").src = "assets/words/gamemode/off/payload_race_off.png"
+            no = true
+            payloadrace = false
+            document.getElementById("buttpayloadrace").setAttribute("onclick", "javascript: payloadraceON();");
+            document.getElementById("buttpayloadrace").setAttribute("onmouseover", "javascript: payloadracebc3();");
+            document.getElementById("buttpayloadrace").setAttribute("onmouseleave", "javascript: payloadracebc4();");
+            document.getElementById("buttpayloadrace").style.backgroundColor = "rgb(167, 52, 52)";
+
+            playagain()
+            Setsetting()
+        }
+        function payloadracebc1() {
+            document.getElementById("buttpayloadrace").style.backgroundColor = "rgb(78, 157, 78)";
+        }
+
+        function payloadracebc2() {
+            document.getElementById("buttpayloadrace").style.backgroundColor = "green";
+        }
+
+        function payloadracebc3() {
+            document.getElementById("buttpayloadrace").style.backgroundColor = "rgb(167, 52, 52)";
+        }
+
+        function payloadracebc4() {
+            document.getElementById("buttpayloadrace").style.backgroundColor = "rgb(121, 10, 10)";
+        }
+
+        function payloadON() {
+            document.getElementById("payloadmaps_butt").src = "assets/words/gamemode/payload.png"
+            no = true
+            payload = true
+            document.getElementById("buttpayload").setAttribute("onclick", "javascript: payloadOFF();");
+            document.getElementById("buttpayload").setAttribute("onmouseover", "javascript: payloadbc1();");
+            document.getElementById("buttpayload").setAttribute("onmouseleave", "javascript: payloadbc2();");
+            document.getElementById("buttpayload").style.backgroundColor = "rgb(78, 157, 78)";
+
+            playagain()
+            Setsetting()
+        }
+        function payloadOFF() {
+            document.getElementById("payloadmaps_butt").src = "assets/words/gamemode/off/payload_off.png"
+            no = true
+            payload = false
+            document.getElementById("buttpayload").setAttribute("onclick", "javascript: payloadON();");
+            document.getElementById("buttpayload").setAttribute("onmouseover", "javascript: payloadbc3();");
+            document.getElementById("buttpayload").setAttribute("onmouseleave", "javascript: payloadbc4();");
+            document.getElementById("buttpayload").style.backgroundColor = "rgb(167, 52, 52)";
+
+            playagain()
+            Setsetting()
+        }
+        function payloadbc1() {
+            document.getElementById("buttpayload").style.backgroundColor = "rgb(78, 157, 78)";
+        }
+
+        function payloadbc2() {
+            document.getElementById("buttpayload").style.backgroundColor = "green";
+        }
+
+        function payloadbc3() {
+            document.getElementById("buttpayload").style.backgroundColor = "rgb(167, 52, 52)";
+        }
+
+        function payloadbc4() {
+            document.getElementById("buttpayload").style.backgroundColor = "rgb(121, 10, 10)";
+        }
+
+        function passON() {
+            document.getElementById("passmaps_butt").src = "assets/words/gamemode/pass_time.png"
+            no = true
+            passtime = true
+            document.getElementById("buttpass").setAttribute("onclick", "javascript: passOFF();");
+            document.getElementById("buttpass").setAttribute("onmouseover", "javascript: passbc1();");
+            document.getElementById("buttpass").setAttribute("onmouseleave", "javascript: passbc2();");
+            document.getElementById("buttpass").style.backgroundColor = "rgb(78, 157, 78)";
+
+            playagain()
+            Setsetting()
+        }
+        function passOFF() {
+            document.getElementById("passmaps_butt").src = "assets/words/gamemode/off/pass_time_off.png"
+            no = true
+            passtime = false
+            document.getElementById("buttpass").setAttribute("onclick", "javascript: passON();");
+            document.getElementById("buttpass").setAttribute("onmouseover", "javascript: passbc3();");
+            document.getElementById("buttpass").setAttribute("onmouseleave", "javascript: passbc4();");
+            document.getElementById("buttpass").style.backgroundColor = "rgb(167, 52, 52)";
+
+            playagain()
+            Setsetting()
+        }
+        function passbc1() {
+            document.getElementById("buttpass").style.backgroundColor = "rgb(78, 157, 78)";
+        }
+
+        function passbc2() {
+            document.getElementById("buttpass").style.backgroundColor = "green";
+        }
+
+        function passbc3() {
+            document.getElementById("buttpass").style.backgroundColor = "rgb(167, 52, 52)";
+        }
+
+        function passbc4() {
+            document.getElementById("buttpass").style.backgroundColor = "rgb(121, 10, 10)";
+        }
+
+        function otherON() {
+            document.getElementById("othermaps_butt").src = "assets/words/gamemode/other.png"
+            no = true
+            other = true
+            document.getElementById("buttother").setAttribute("onclick", "javascript: otherOFF();");
+            document.getElementById("buttother").setAttribute("onmouseover", "javascript: otherbc1();");
+            document.getElementById("buttother").setAttribute("onmouseleave", "javascript: otherbc2();");
+            document.getElementById("buttother").style.backgroundColor = "rgb(78, 157, 78)";
+
+            playagain()
+            Setsetting()
+        }
+        function otherOFF() {
+            document.getElementById("othermaps_butt").src = "assets/words/gamemode/off/other_off.png"
+            no = true
+            other = false
+            document.getElementById("buttother").setAttribute("onclick", "javascript: otherON();");
+            document.getElementById("buttother").setAttribute("onmouseover", "javascript: otherbc3();");
+            document.getElementById("buttother").setAttribute("onmouseleave", "javascript: otherbc4();");
+            document.getElementById("buttother").style.backgroundColor = "rgb(167, 52, 52)";
+
+            playagain()
+            Setsetting()
+        }
+        function otherbc1() {
+            document.getElementById("buttother").style.backgroundColor = "rgb(78, 157, 78)";
+        }
+
+        function otherbc2() {
+            document.getElementById("buttother").style.backgroundColor = "green";
+        }
+
+        function otherbc3() {
+            document.getElementById("buttother").style.backgroundColor = "rgb(167, 52, 52)";
+        }
+
+        function otherbc4() {
+            document.getElementById("buttother").style.backgroundColor = "rgb(121, 10, 10)";
+        }
+
+        function medievalON() {
+            document.getElementById("medievalmaps_butt").src = "assets/words/gamemode/medieval.png"
+            no = true
+            medieval = true
+            document.getElementById("buttmedieval").setAttribute("onclick", "javascript: medievalOFF();");
+            document.getElementById("buttmedieval").setAttribute("onmouseover", "javascript: medievalbc1();");
+            document.getElementById("buttmedieval").setAttribute("onmouseleave", "javascript: medievalbc2();");
+            document.getElementById("buttmedieval").style.backgroundColor = "rgb(78, 157, 78)";
+
+            playagain()
+            Setsetting()
+        }
+        function medievalOFF() {
+            document.getElementById("medievalmaps_butt").src = "assets/words/gamemode/off/medieval_off.png"
+            no = true
+            medieval = false
+            document.getElementById("buttmedieval").setAttribute("onclick", "javascript: medievalON();");
+            document.getElementById("buttmedieval").setAttribute("onmouseover", "javascript: medievalbc3();");
+            document.getElementById("buttmedieval").setAttribute("onmouseleave", "javascript: medievalbc4();");
+            document.getElementById("buttmedieval").style.backgroundColor = "rgb(167, 52, 52)";
+
+            playagain()
+            Setsetting()
+        }
+        function medievalbc1() {
+            document.getElementById("buttmedieval").style.backgroundColor = "rgb(78, 157, 78)";
+        }
+
+        function medievalbc2() {
+            document.getElementById("buttmedieval").style.backgroundColor = "green";
+        }
+
+        function medievalbc3() {
+            document.getElementById("buttmedieval").style.backgroundColor = "rgb(167, 52, 52)";
+        }
+
+        function medievalbc4() {
+            document.getElementById("buttmedieval").style.backgroundColor = "rgb(121, 10, 10)";
+        }
+
+        function powerON() {
+            document.getElementById("powermaps_butt").src = "assets/words/gamemode/mannpower.png"
+            no = true
+            mannpower = true
+            document.getElementById("buttpower").setAttribute("onclick", "javascript: powerOFF();");
+            document.getElementById("buttpower").setAttribute("onmouseover", "javascript: powerbc1();");
+            document.getElementById("buttpower").setAttribute("onmouseleave", "javascript: powerbc2();");
+            document.getElementById("buttpower").style.backgroundColor = "rgb(78, 157, 78)";
+
+            playagain()
+            Setsetting()
+        }
+        function powerOFF() {
+            document.getElementById("powermaps_butt").src = "assets/words/gamemode/off/mannpower_off.png"
+            no = true
+            mannpower = false
+            document.getElementById("buttpower").setAttribute("onclick", "javascript: powerON();");
+            document.getElementById("buttpower").setAttribute("onmouseover", "javascript: powerbc3();");
+            document.getElementById("buttpower").setAttribute("onmouseleave", "javascript: powerbc4();");
+            document.getElementById("buttpower").style.backgroundColor = "rgb(167, 52, 52)";
+
+            playagain()
+            Setsetting()
+        }
+        function powerbc1() {
+            document.getElementById("buttpower").style.backgroundColor = "rgb(78, 157, 78)";
+        }
+
+        function powerbc2() {
+            document.getElementById("buttpower").style.backgroundColor = "green";
+        }
+
+        function powerbc3() {
+            document.getElementById("buttpower").style.backgroundColor = "rgb(167, 52, 52)";
+        }
+
+        function powerbc4() {
+            document.getElementById("buttpower").style.backgroundColor = "rgb(121, 10, 10)";
+        }
+
+        function mannON() {
+            document.getElementById("mannmaps_butt").src = "assets/words/gamemode/mann_vs_machine.png"
+            no = true
+            mannvsmachine = true
+            document.getElementById("buttmann").setAttribute("onclick", "javascript: mannOFF();");
+            document.getElementById("buttmann").setAttribute("onmouseover", "javascript: mannbc1();");
+            document.getElementById("buttmann").setAttribute("onmouseleave", "javascript: mannbc2();");
+            document.getElementById("buttmann").style.backgroundColor = "rgb(78, 157, 78)";
+
+            playagain()
+            Setsetting()
+        }
+        function mannOFF() {
+            document.getElementById("mannmaps_butt").src = "assets/words/gamemode/off/mann_vs_machine_off.png"
+            no = true
+            mannvsmachine = false
+            document.getElementById("buttmann").setAttribute("onclick", "javascript: mannON();");
+            document.getElementById("buttmann").setAttribute("onmouseover", "javascript: mannbc3();");
+            document.getElementById("buttmann").setAttribute("onmouseleave", "javascript: mannbc4();");
+            document.getElementById("buttmann").style.backgroundColor = "rgb(167, 52, 52)";
+
+            playagain()
+            Setsetting()
+        }
+        function mannbc1() {
+            document.getElementById("buttmann").style.backgroundColor = "rgb(78, 157, 78)";
+        }
+
+        function mannbc2() {
+            document.getElementById("buttmann").style.backgroundColor = "green";
+        }
+
+        function mannbc3() {
+            document.getElementById("buttmann").style.backgroundColor = "rgb(167, 52, 52)";
+        }
+
+        function mannbc4() {
+            document.getElementById("buttmann").style.backgroundColor = "rgb(121, 10, 10)";
+        }
+
+        function kothON() {
+            document.getElementById("kothmaps_butt").src = "assets/words/gamemode/king_of_the_hill.png"
+            no = true
+            kingofthehill = true
+            document.getElementById("buttkoth").setAttribute("onclick", "javascript: kothOFF();");
+            document.getElementById("buttkoth").setAttribute("onmouseover", "javascript: kothbc1();");
+            document.getElementById("buttkoth").setAttribute("onmouseleave", "javascript: kothbc2();");
+            document.getElementById("buttkoth").style.backgroundColor = "rgb(78, 157, 78)";
+
+            playagain()
+            Setsetting()
+        }
+        function kothOFF() {
+            document.getElementById("kothmaps_butt").src = "assets/words/gamemode/off/king_of_the_hill_off.png"
+            no = true
+            kingofthehill = false
+            document.getElementById("buttkoth").setAttribute("onclick", "javascript: kothON();");
+            document.getElementById("buttkoth").setAttribute("onmouseover", "javascript: kothbc3();");
+            document.getElementById("buttkoth").setAttribute("onmouseleave", "javascript: kothbc4();");
+            document.getElementById("buttkoth").style.backgroundColor = "rgb(167, 52, 52)";
+
+            playagain()
+            Setsetting()
+        }
+        function kothbc1() {
+            document.getElementById("buttkoth").style.backgroundColor = "rgb(78, 157, 78)";
+        }
+
+        function kothbc2() {
+            document.getElementById("buttkoth").style.backgroundColor = "green";
+        }
+
+        function kothbc3() {
+            document.getElementById("buttkoth").style.backgroundColor = "rgb(167, 52, 52)";
+        }
+
+        function kothbc4() {
+            document.getElementById("buttkoth").style.backgroundColor = "rgb(121, 10, 10)";
+        }
+
+        function hybridON() {
+            document.getElementById("hybridmaps_butt").src = "assets/words/gamemode/hybrid.png"
+            no = true
+            hybrid = true
+            document.getElementById("butthybrid").setAttribute("onclick", "javascript: hybridOFF();");
+            document.getElementById("butthybrid").setAttribute("onmouseover", "javascript: hybridbc1();");
+            document.getElementById("butthybrid").setAttribute("onmouseleave", "javascript: hybridbc2();");
+            document.getElementById("butthybrid").style.backgroundColor = "rgb(78, 157, 78)";
+
+            playagain()
+            Setsetting()
+        }
+        function hybridOFF() {
+            document.getElementById("hybridmaps_butt").src = "assets/words/gamemode/off/hybrid_off.png"
+            no = true
+            hybrid = false
+            document.getElementById("butthybrid").setAttribute("onclick", "javascript: hybridON();");
+            document.getElementById("butthybrid").setAttribute("onmouseover", "javascript: hybridbc3();");
+            document.getElementById("butthybrid").setAttribute("onmouseleave", "javascript: hybridbc4();");
+            document.getElementById("butthybrid").style.backgroundColor = "rgb(167, 52, 52)";
+
+            playagain()
+            Setsetting()
+        }
+        function hybridbc1() {
+            document.getElementById("butthybrid").style.backgroundColor = "rgb(78, 157, 78)";
+        }
+
+        function hybridbc2() {
+            document.getElementById("butthybrid").style.backgroundColor = "green";
+        }
+
+        function hybridbc3() {
+            document.getElementById("butthybrid").style.backgroundColor = "rgb(167, 52, 52)";
+        }
+
+        function hybridbc4() {
+            document.getElementById("butthybrid").style.backgroundColor = "rgb(121, 10, 10)";
+        }
+
+        function holdflagON() {
+            document.getElementById("holdflagmaps_butt").src = "assets/words/gamemode/hold_the_flag.png"
+            no = true
+            holdtheflag = true
+            document.getElementById("buttholdflag").setAttribute("onclick", "javascript: holdflagOFF();");
+            document.getElementById("buttholdflag").setAttribute("onmouseover", "javascript: holdflagbc1();");
+            document.getElementById("buttholdflag").setAttribute("onmouseleave", "javascript: holdflagbc2();");
+            document.getElementById("buttholdflag").style.backgroundColor = "rgb(78, 157, 78)";
+
+            playagain()
+            Setsetting()
+        }
+        function holdflagOFF() {
+            document.getElementById("holdflagmaps_butt").src = "assets/words/gamemode/off/hold_the_flag_off.png"
+            no = true
+            holdtheflag = false
+            document.getElementById("buttholdflag").setAttribute("onclick", "javascript: holdflagON();");
+            document.getElementById("buttholdflag").setAttribute("onmouseover", "javascript: holdflagbc3();");
+            document.getElementById("buttholdflag").setAttribute("onmouseleave", "javascript: holdflagbc4();");
+            document.getElementById("buttholdflag").style.backgroundColor = "rgb(167, 52, 52)";
+
+            playagain()
+            Setsetting()
+        }
+        function holdflagbc1() {
+            document.getElementById("buttholdflag").style.backgroundColor = "rgb(78, 157, 78)";
+        }
+
+        function holdflagbc2() {
+            document.getElementById("buttholdflag").style.backgroundColor = "green";
+        }
+
+        function holdflagbc3() {
+            document.getElementById("buttholdflag").style.backgroundColor = "rgb(167, 52, 52)";
+        }
+
+        function holdflagbc4() {
+            document.getElementById("buttholdflag").style.backgroundColor = "rgb(121, 10, 10)";
+        }
+
+        function controlpointON() {
+            document.getElementById("controlpointmaps_butt").src = "assets/words/gamemode/control_point.png"
+            no = true
+            controlpoint = true
+            document.getElementById("buttcontrolpoint").setAttribute("onclick", "javascript: controlpointOFF();");
+            document.getElementById("buttcontrolpoint").setAttribute("onmouseover", "javascript: controlpointbc1();");
+            document.getElementById("buttcontrolpoint").setAttribute("onmouseleave", "javascript: controlpointbc2();");
+            document.getElementById("buttcontrolpoint").style.backgroundColor = "rgb(78, 157, 78)";
+
+            playagain()
+            Setsetting()
+        }
+        function controlpointOFF() {
+            document.getElementById("controlpointmaps_butt").src = "assets/words/gamemode/off/control_point_off.png"
+            no = true
+            controlpoint = false
+            document.getElementById("buttcontrolpoint").setAttribute("onclick", "javascript: controlpointON();");
+            document.getElementById("buttcontrolpoint").setAttribute("onmouseover", "javascript: controlpointbc3();");
+            document.getElementById("buttcontrolpoint").setAttribute("onmouseleave", "javascript: controlpointbc4();");
+            document.getElementById("buttcontrolpoint").style.backgroundColor = "rgb(167, 52, 52)";
+
+            playagain()
+            Setsetting()
+        }
+        function controlpointbc1() {
+            document.getElementById("buttcontrolpoint").style.backgroundColor = "rgb(78, 157, 78)";
+        }
+
+        function controlpointbc2() {
+            document.getElementById("buttcontrolpoint").style.backgroundColor = "green";
+        }
+
+        function controlpointbc3() {
+            document.getElementById("buttcontrolpoint").style.backgroundColor = "rgb(167, 52, 52)";
+        }
+
+        function controlpointbc4() {
+            document.getElementById("buttcontrolpoint").style.backgroundColor = "rgb(121, 10, 10)";
+        }
+
+        function capflagON() {
+            document.getElementById("capflagmaps_butt").src = "assets/words/gamemode/capture_the_flag.png"
+            no = true
+            capturetheflag = true
+            document.getElementById("buttcapflag").setAttribute("onclick", "javascript: capflagOFF();");
+            document.getElementById("buttcapflag").setAttribute("onmouseover", "javascript: capflagbc1();");
+            document.getElementById("buttcapflag").setAttribute("onmouseleave", "javascript: capflagbc2();");
+            document.getElementById("buttcapflag").style.backgroundColor = "rgb(78, 157, 78)";
+
+            playagain()
+            Setsetting()
+        }
+        function capflagOFF() {
+            document.getElementById("capflagmaps_butt").src = "assets/words/gamemode/off/capture_the_flag_off.png"
+            no = true
+            capturetheflag = false
+            document.getElementById("buttcapflag").setAttribute("onclick", "javascript: capflagON();");
+            document.getElementById("buttcapflag").setAttribute("onmouseover", "javascript: capflagbc3();");
+            document.getElementById("buttcapflag").setAttribute("onmouseleave", "javascript: capflagbc4();");
+            document.getElementById("buttcapflag").style.backgroundColor = "rgb(167, 52, 52)";
+
+            playagain()
+            Setsetting()
+        }
+        function capflagbc1() {
+            document.getElementById("buttcapflag").style.backgroundColor = "rgb(78, 157, 78)";
+        }
+
+        function capflagbc2() {
+            document.getElementById("buttcapflag").style.backgroundColor = "green";
+        }
+
+        function capflagbc3() {
+            document.getElementById("buttcapflag").style.backgroundColor = "rgb(167, 52, 52)";
+        }
+
+        function capflagbc4() {
+            document.getElementById("buttcapflag").style.backgroundColor = "rgb(121, 10, 10)";
+        }
+
+        function attdefON() {
+            document.getElementById("attdefmaps_butt").src = "assets/words/gamemode/attack_defend.png"
+            no = true
+            attackdefend = true
+            document.getElementById("buttattdef").setAttribute("onclick", "javascript: attdefOFF();");
+            document.getElementById("buttattdef").setAttribute("onmouseover", "javascript: attdefbc1();");
+            document.getElementById("buttattdef").setAttribute("onmouseleave", "javascript: attdefbc2();");
+            document.getElementById("buttattdef").style.backgroundColor = "rgb(78, 157, 78)";
+
+            playagain()
+            Setsetting()
+        }
+        function attdefOFF() {
+            document.getElementById("attdefmaps_butt").src = "assets/words/gamemode/off/attack_defend_off.png"
+            no = true
+            attackdefend = false
+            document.getElementById("buttattdef").setAttribute("onclick", "javascript: attdefON();");
+            document.getElementById("buttattdef").setAttribute("onmouseover", "javascript: attdefbc3();");
+            document.getElementById("buttattdef").setAttribute("onmouseleave", "javascript: attdefbc4();");
+            document.getElementById("buttattdef").style.backgroundColor = "rgb(167, 52, 52)";
+
+            playagain()
+            Setsetting()
+        }
+        function attdefbc1() {
+            document.getElementById("buttattdef").style.backgroundColor = "rgb(78, 157, 78)";
+        }
+
+        function attdefbc2() {
+            document.getElementById("buttattdef").style.backgroundColor = "green";
+        }
+
+        function attdefbc3() {
+            document.getElementById("buttattdef").style.backgroundColor = "rgb(167, 52, 52)";
+        }
+
+        function attdefbc4() {
+            document.getElementById("buttattdef").style.backgroundColor = "rgb(121, 10, 10)";
+        }
+
+        function arenaON() {
+            document.getElementById("arenamaps_butt").src = "assets/words/gamemode/arena.png"
+            no = true
+            arena = true
+            document.getElementById("buttarena").setAttribute("onclick", "javascript: arenaOFF();");
+            document.getElementById("buttarena").setAttribute("onmouseover", "javascript: arenabc1();");
+            document.getElementById("buttarena").setAttribute("onmouseleave", "javascript: arenabc2();");
+            document.getElementById("buttarena").style.backgroundColor = "rgb(78, 157, 78)";
+
+            playagain()
+            Setsetting()
+        }
+        function arenaOFF() {
+            document.getElementById("arenamaps_butt").src = "assets/words/gamemode/off/arena_off.png"
+            no = true
+            arena = false
+            document.getElementById("buttarena").setAttribute("onclick", "javascript: arenaON();");
+            document.getElementById("buttarena").setAttribute("onmouseover", "javascript: arenabc3();");
+            document.getElementById("buttarena").setAttribute("onmouseleave", "javascript: arenabc4();");
+            document.getElementById("buttarena").style.backgroundColor = "rgb(167, 52, 52)";
+
+            playagain()
+            Setsetting()
+        }
+        function arenabc1() {
+            document.getElementById("buttarena").style.backgroundColor = "rgb(78, 157, 78)";
+        }
+
+        function arenabc2() {
+            document.getElementById("buttarena").style.backgroundColor = "green";
+        }
+
+        function arenabc3() {
+            document.getElementById("buttarena").style.backgroundColor = "rgb(167, 52, 52)";
+        }
+
+        function arenabc4() {
+            document.getElementById("buttarena").style.backgroundColor = "rgb(121, 10, 10)";
         }
 
         function normalON() {
-
+            document.getElementById("normalmaps_butt").src = "assets/words/other/normal.png"
+            no = true
             normal = true
             document.getElementById("buttnormal").setAttribute("onclick", "javascript: normalOFF();");
             document.getElementById("buttnormal").setAttribute("onmouseover", "javascript: normalbc1();");
@@ -494,7 +1559,8 @@
             Setsetting()
         }
         function normalOFF() {
-
+            document.getElementById("normalmaps_butt").src = "assets/words/other/off/normal_off.png"
+            no = true
             normal = false
             document.getElementById("buttnormal").setAttribute("onclick", "javascript: normalON();");
             document.getElementById("buttnormal").setAttribute("onmouseover", "javascript: normalbc3();");
@@ -523,7 +1589,8 @@
 
 
         function halloweenON() {
-
+            document.getElementById("halloweenmaps_butt").src = "assets/words/other/halloween.png"
+            no = true
             halloween = true
             document.getElementById("butthalloween").setAttribute("onclick", "javascript: halloweenOFF();");
             document.getElementById("butthalloween").setAttribute("onmouseover", "javascript: halloweenbc1();");
@@ -534,7 +1601,8 @@
             Setsetting()
         }
         function halloweenOFF() {
-
+            document.getElementById("halloweenmaps_butt").src = "assets/words/other/off/halloween_off.png"
+            no = true
             halloween = false
             document.getElementById("butthalloween").setAttribute("onclick", "javascript: halloweenON();");
             document.getElementById("butthalloween").setAttribute("onmouseover", "javascript: halloweenbc3();");
@@ -562,7 +1630,8 @@
 
 
         function christmasON() {
-
+            document.getElementById("christmasmaps_butt").src = "assets/words/other/christmas.png"
+            no = true
             christmas = true
             document.getElementById("buttchristmas").setAttribute("onclick", "javascript: christmasOFF();");
             document.getElementById("buttchristmas").setAttribute("onmouseover", "javascript: christmasbc1();");
@@ -573,7 +1642,8 @@
             Setsetting()
         }
         function christmasOFF() {
-
+            document.getElementById("christmasmaps_butt").src = "assets/words/other/off/christmas_off.png"
+            no = true
             christmas = false
             document.getElementById("buttchristmas").setAttribute("onclick", "javascript: christmasON();");
             document.getElementById("buttchristmas").setAttribute("onmouseover", "javascript: christmasbc3();");
@@ -602,7 +1672,8 @@
 
 
         function ValveON() {
-
+            document.getElementById("valvemaps_butt").src = "assets/words/other/valve_maps.png"
+            no = true
             ValveMaps = true
             document.getElementById("buttsetting2").setAttribute("onclick", "javascript: ValveOFF();");
             document.getElementById("buttsetting2").setAttribute("onmouseover", "javascript: valvebc1();");
@@ -613,7 +1684,8 @@
             Setsetting()
         }
         function ValveOFF() {
-
+            document.getElementById("valvemaps_butt").src = "assets/words/other/off/valve_maps_off.png"
+            no = true
             ValveMaps = false
             document.getElementById("buttsetting2").setAttribute("onclick", "javascript: ValveON();");
             document.getElementById("buttsetting2").setAttribute("onmouseover", "javascript: valvebc3();");
@@ -643,7 +1715,8 @@
 
 
         function CommunityON() {
-
+            document.getElementById("communitymaps_butt").src = "assets/words/other/community_maps.png"
+            no = true
             CommunityMaps = true
             document.getElementById("buttsetting1").setAttribute("onclick", "javascript: CommunityOFF();");
             document.getElementById("buttsetting1").setAttribute("onmouseover", "javascript: communitybc1();");
@@ -654,7 +1727,8 @@
             Setsetting()
         }
         function CommunityOFF() {
-
+            document.getElementById("communitymaps_butt").src = "assets/words/other/off/community_maps_off.png"
+            no = true
             CommunityMaps = false
             document.getElementById("buttsetting1").setAttribute("onclick", "javascript: CommunityON();");
             document.getElementById("buttsetting1").setAttribute("onmouseover", "javascript: communitybc3();");
@@ -4257,12 +5331,22 @@
             datebad = 0
             datetotal = 0
 
-            document.getElementById("butt").style.backgroundColor = "rgb(78, 157, 78)"
+            if (no == false)
+            {
+                document.getElementById("butt").style.backgroundColor = "rgb(78, 157, 78)"
+            }
+            else 
+            {
+                document.getElementById("butt").style.backgroundColor = "green";
+            }
+
+
             document.getElementById("butt").textContent = "Submit"
             document.getElementById("butt").setAttribute("onmouseover", "javascript: buttoncolor1();");
             document.getElementById("butt").setAttribute("onmouseleave", "javascript: buttoncolor2();");
             document.getElementById("butt").setAttribute("onclick", "javascript: pointstuff();");
             
+            no = false
             Setsetting()
         }
 
@@ -4281,47 +5365,47 @@
             point_daterel = 0
 
             if (inname == inname_exp) {
-                point_inname = 5
-                intotal = intotal + 5
+                point_inname = 2
+                intotal = intotal + 2
                 ingood = ingood + 1
             }
             else {
-                point_inname = -10
-                intotal = intotal - 10
+                point_inname = -1
+                intotal = intotal - 1
                 inbad = inbad + 1
 
             }
 
             if (filename == filename_exp) {
-                point_filename = 6
-                filetotal = filetotal + 6
+                point_filename = 3
+                filetotal = filetotal + 3
                 filegood = filegood + 1
             }
             else {
-                point_filename = -5
-                filetotal = filetotal - 5
+                //point_filename = -5
+                //filetotal = filetotal - 5
                 filebad = filebad + 1
             }
 
             if (modename == modename_exp) {
-                point_modename = 5
-                modetotal = modetotal + 5
+                point_modename = 1
+                modetotal = modetotal + 1
                 modegood = modegood + 1
             }
             else {
-                point_modename = -6
-                modetotal = modetotal - 6
+                point_modename = -1
+                modetotal = modetotal - 1
                 modebad = modebad + 1
             }
 
             if (daterel == daterel_exp) {
-                point_daterel = 10
-                datetotal = datetotal + 10
+                point_daterel = 5
+                datetotal = datetotal + 5
                 dategood = dategood + 1
             }
             else {
-                point_daterel = -2
-                datetotal = datetotal - 2
+                //point_daterel = -2
+                //datetotal = datetotal - 2
                 datebad = datebad + 1
             }
 
@@ -4395,10 +5479,10 @@
                 loopy = false
                 console.log("completed")
 
-                document.getElementById("inscore").textContent = "Ingame Name: " + ingood + " Correct! | " +inbad+ " Incorrect :( | Total Points: " +intotal 
-                document.getElementById("filescore").textContent = "File Name: " + filegood + " Correct! | " +filebad+ " Incorrect :( | Total Points: " +filetotal 
-                document.getElementById("modescore").textContent = "Gamemode: " + modegood + " Correct! | " +modebad+ " Incorrect :( | Total Points: " +modetotal 
-                document.getElementById("datescore").textContent = "Date Released: " + dategood + " Correct! | " +datebad+ " Incorrect :( | Total Points: " +datetotal 
+                document.getElementById("inscore").textContent = "Ingame Name: " + ingood + " Correct! | " +inbad+ " Incorrect | Total Points: " +intotal 
+                document.getElementById("filescore").textContent = "File Name: " + filegood + " Correct! | " +filebad+ " Incorrect | Total Points: " +filetotal 
+                document.getElementById("modescore").textContent = "Gamemode: " + modegood + " Correct! | " +modebad+ " Incorrect | Total Points: " +modetotal 
+                document.getElementById("datescore").textContent = "Date Released: " + dategood + " Correct! | " +datebad+ " Incorrect | Total Points: " +datetotal 
 
                 totalguess = "You have " + totalmaps + " maps left!"
                 document.getElementById("guessesleft").textContent = totalguess
@@ -4673,83 +5757,203 @@
 
                 if (normal == true) {
 
-                arbadlands = true
-                arwell = true
-                arsawmill = true
-                arlumberyard = true
-                arravine = true
-                arnucleus = true
-                argranary = true
-                adgorge = true
-                adyetipark = true
-                admountainlab = true
-                addustbowl = true
-                adgravelpit = true
-                cpbadlands = true
-                cp5gorge = true
-                cpcloak = true
-                cpwell = true
-                cpprocess = true
-                cpgranary = true
-                cpfoundry = true
-                cppowerhouse = true
-                ctf2fort = true
-                ctfsawmill = true
-                ctfdoublecross = true
-                ctfwell = true
-                kothnucleus = true
-                kothviaduct = true
-                kothsawmill = true
-                kothbadlands = true
-                meddegrootkeep = true
-                mvmdecoy = true
-                mvmexample = true
-                mvmcoaltown = true
-                mvmrottenburg = true
-                mvmmannhattan = true
-                mvmmannworks = true
-                mvmbigrock = true
-                mpfoundry = true
-                mpthundermountain = true
-                mpgorge = true
-                mphellfire = true
-                plpipeline = true
-                plrhightower = true
-                plthundermountain = true
-                plbadwater = true
-                plupward = true
-                plbarnblitz = true
-                plgoldrush = true
-                plcactus = true
-                othdevtest = true
-                othitemtest = true
-                othbackground01 = true
-                othcloak = true
-                passdistrict = true
-                passtimbertown = true
-                passbrickyard = true
-                passtemplate = true
-                rdasteroid = true
-                sddoomsday = true
-                tchydro = true
-                trtarget = true
-                trdustbowl = true
+                if (training == true) {
 
-                totalmaps = totalmaps + 61
+                    trtarget = true
+                    trdustbowl = true
+
+                    totalmaps = totalmaps + 2
+                }
+
+                if (territorialcontrol == true) {
+
+                    tchydro = true
+
+                    totalmaps = totalmaps + 1
+                }
+
+                if (specialdelivery == true) {
+
+                    sddoomsday = true
+
+                    totalmaps = totalmaps + 1
+                }
+
+                if (robotdestruction == true) {
+
+                    rdasteroid = true
+
+                    totalmaps = totalmaps + 1
+                }
+
+                if (payloadrace == true) {
+
+                    plpipeline = true
+                    plrhightower = true
+
+                    totalmaps = totalmaps + 2
+                }
+
+                if (payload == true) {
+
+                    plthundermountain = true
+                    plbadwater = true
+                    plupward = true
+                    plbarnblitz = true
+                    plgoldrush = true
+                    plcactus = true
+
+                    totalmaps = totalmaps + 6
+                }
+
+                if (passtime == true) {
+
+                    passdistrict = true
+                    passtimbertown = true
+                    passbrickyard = true
+                    passtemplate = true
+
+                    totalmaps = totalmaps + 4
+                }
+
+                if (other == true) {
+
+                    othdevtest = true
+                    othitemtest = true
+                    othbackground01 = true
+                    othcloak = true
+
+                    totalmaps = totalmaps + 4
+                }
+
+                if (medieval == true) {
+
+                    meddegrootkeep = true
+
+                    totalmaps = totalmaps + 1
+                }
+
+                if (mannpower == true) {
+
+                    mpfoundry = true
+                    mpthundermountain = true
+                    mpgorge = true
+                    mphellfire = true
+
+                    totalmaps = totalmaps + 4
+                }
+
+                if (mannvsmachine == true) {
+
+                    mvmdecoy = true
+                    mvmexample = true
+                    mvmcoaltown = true
+                    mvmrottenburg = true
+                    mvmmannhattan = true
+                    mvmmannworks = true
+                    mvmbigrock = true
+
+                    totalmaps = totalmaps + 7
+                }
+
+                if (kingofthehill == true) {
+
+                    kothnucleus = true
+                    kothviaduct = true
+                    kothsawmill = true
+                    kothbadlands = true
+
+                    totalmaps = totalmaps + 4
+                }
+
+                if (controlpoint == true) {
+
+                    cpbadlands = true
+                    cp5gorge = true
+                    cpcloak = true
+                    cpwell = true
+                    cpprocess = true
+                    cpgranary = true
+                    cpfoundry = true
+                    cppowerhouse = true
+
+                    totalmaps = totalmaps + 8
+                }
+
+                if (capturetheflag == true) {
+
+                    ctf2fort = true
+                    ctfsawmill = true
+                    ctfdoublecross = true
+                    ctfwell = true
+
+                    totalmaps = totalmaps + 4
+                }
+
+                if (attackdefend == true) {
+
+                    adgorge = true
+                    adyetipark = true
+                    admountainlab = true
+                    addustbowl = true
+                    adgravelpit = true
+
+                    totalmaps = totalmaps + 5
+                }
+
+                if (arena == true) {
+
+                    arbadlands = true
+                    arwell = true
+                    arsawmill = true
+                    arlumberyard = true
+                    arravine = true
+                    arnucleus = true
+                    argranary = true
+
+                    totalmaps = totalmaps + 7
+                }
 
                 }
 
-                if (halloween == true) {
+                if (halloween == true) { // ====================SPOOKY=================
                 
-                admanor = true
-                kotheyeaduct = true
-                kothghostfort = true
-                kothharvestevent = true
-                mvmghosttown = true
-                plrhelltower = true
-                sdcoc = true
+                if (specialdelivery == true) {
 
-                totalmaps = totalmaps + 7
+                    sdcoc = true
+
+                    totalmaps = totalmaps + 1
+                }
+
+                if (payloadrace == true) {
+
+                    plrhelltower = true
+
+                    totalmaps = totalmaps + 1
+                }
+
+                if (mannvsmachine == true) {
+
+                    mvmghosttown = true
+
+                    totalmaps = totalmaps + 1
+                }
+
+                if (kingofthehill == true) {
+
+                    kotheyeaduct = true
+                    kothghostfort = true
+                    kothharvestevent = true
+
+                    totalmaps = totalmaps + 3
+                }
+
+                if (attackdefend == true) {
+
+                    admanor = true
+
+                    totalmaps = totalmaps + 1
+                }
 
                 }
 
@@ -4759,185 +5963,364 @@
 
                 if (normal == true) {
 
-                aroffblast = true
-                arwatch = true
-                adbrew = true
-                arbyre = true
-                adcargo = true
-                adfulgur = true
-                adconifer = true
-                adfortezza = true
-                adaltitude = true
-                adsnowplow = true
-                adjunction = true
-                adsulfur = true
-                adhardwood = true
-                adsteel = true
-                adhadal = true
-                admossrock = true
-                adegypt = true
-                adovergrown = true
-                cpplgavle = true
-                cpgullywash = true
-                cpstandin = true
-                cpfastlane = true
-                cpreckoner = true
-                cpsnakewater = true
-                cpcoldfront = true
-                cpmetalworks = true
-                cpyukon = true
-                cpvanguard = true
-                cpcanaveral = true
-                cpsunshine = true
-                cpfreight = true
-                adhaarp = true
-                ctf2fortin = true
-                ctfpressure = true
-                ctfapplejack = true
-                ctfpelican = true
-                ctfpenguin = true
-                ctffrosty = true
-                ctfturbine = true
-                ctflandfall = true
-                ctfwindy = true
-                kothabbey = true
-                kothblowout = true
-                kothsmol = true
-                kothlaughterspookyless =  true
-                kothovercast = true
-                kothasshole = true
-                kothlakeside = true
-                kothsuijin = true
-                kothcascade = true
-                kothmegaton = true
-                kothking = true
-                kothcachoeira = true
-                kothhighpass = true
-                kothlazarus = true
-                kothrotunda = true
-                kothbrazil = true
-                kothsharkbay = true
-                kothsnowtower = true
-                kothharvest = true
-                kothprobed = true
-                kothwhyanotherreskin = true
-                medburghausen = true
-                pdatomsmash = true
-                pdwatergate = true
-                pdselbyen = true
-                plrhacksaw = true
-                plrnightfall = true
-                plrbanana = true
-                plfish = true
-                plemerge = true
-                plembargo = true
-                plsitdown = true
-                plcashworks = true
-                plodyssey = true
-                plborneo = true
-                plpatagonia = true
-                plvenice = true
-                plbreadspace = true
-                plsnowycoast = true
-                plphoenix = true
-                plpier = true
-                plcamber = true
-                plenclosure = true
-                plrumford = true
-                plhoodoo = true
-                plswiftwater = true
-                plfrontier = true
-                vshnucleus = true
-                vshskirmish = true
-                vshdistillery = true
-                vshtinyrock = true
+                if (versussaxtonhale == true) {
 
-                totalmaps = totalmaps + 92
+                    vshnucleus = true
+                    vshskirmish = true
+                    vshdistillery = true
+                    vshtinyrock = true
+
+                    totalmaps = totalmaps + 4
+                }
+
+                if (playerdestruction == true) {
+
+                    pdatomsmash = true
+                    pdwatergate = true
+                    pdselbyen = true
+
+                    totalmaps = totalmaps + 3
+                }
+
+                if (payloadrace == true) {
+
+                    plrhacksaw = true
+                    plrnightfall = true
+                    plrbanana = true
+
+                    totalmaps = totalmaps + 3
+                }
+
+                if (payload == true) {
+
+                    plfish = true
+                    plemerge = true
+                    plembargo = true
+                    plsitdown = true
+                    plcashworks = true
+                    plodyssey = true
+                    plborneo = true
+                    plpatagonia = true
+                    plvenice = true
+                    plbreadspace = true
+                    plsnowycoast = true
+                    plphoenix = true
+                    plpier = true
+                    plcamber = true
+                    plenclosure = true
+                    plrumford = true
+                    plhoodoo = true
+                    plswiftwater = true
+                    plfrontier = true
+
+                    totalmaps = totalmaps + 19
+                }
+
+                if (medieval == true) {
+
+                    medburghausen = true
+
+                    totalmaps = totalmaps + 1
+                }
+
+                if (kingofthehill == true) {
+
+                    kothabbey = true
+                    kothblowout = true
+                    kothsmol = true
+                    kothlaughterspookyless =  true
+                    kothovercast = true
+                    kothasshole = true
+                    kothlakeside = true
+                    kothsuijin = true
+                    kothcascade = true
+                    kothmegaton = true
+                    kothking = true
+                    kothcachoeira = true
+                    kothhighpass = true
+                    kothlazarus = true
+                    kothrotunda = true
+                    kothbrazil = true
+                    kothsharkbay = true
+                    kothsnowtower = true
+                    kothharvest = true
+                    kothprobed = true
+                    kothwhyanotherreskin = true
+
+                    totalmaps = totalmaps + 21
+                }
+
+                if (hybrid == true) {
+
+                    cpplgavle = true
+
+                    totalmaps = totalmaps + 1
+                }
+
+                if (controlpoint == true) {
+
+                    cpgullywash = true
+                    cpstandin = true
+                    cpfastlane = true
+                    cpreckoner = true
+                    cpsnakewater = true
+                    cpcoldfront = true
+                    cpmetalworks = true
+                    cpyukon = true
+                    cpvanguard = true
+                    cpcanaveral = true
+                    cpsunshine = true
+                    cpfreight = true
+
+                    totalmaps = totalmaps + 12
+                }
+
+                if (capturetheflag == true) {
+
+                    ctf2fortin = true
+                    ctfpressure = true
+                    ctfapplejack = true
+                    ctfpelican = true
+                    ctfpenguin = true
+                    ctffrosty = true
+                    ctfturbine = true
+                    ctflandfall = true
+                    ctfwindy = true
+
+                    totalmaps = totalmaps + 9
+                }
+
+                if (attackdefend == true) {
+
+                    adbrew = true
+                    adcargo = true
+                    adfulgur = true
+                    adconifer = true
+                    adfortezza = true
+                    adaltitude = true
+                    adsnowplow = true
+                    adjunction = true
+                    adsulfur = true
+                    adhardwood = true
+                    adsteel = true
+                    adhadal = true
+                    admossrock = true
+                    adegypt = true
+                    adovergrown = true
+
+                    adhaarp = true
+
+                    totalmaps = totalmaps + 16
+                }
+
+                if (arena == true) {
+
+                    aroffblast = true
+                    arwatch = true
+                    arbyre = true
+
+                    totalmaps = totalmaps + 3
+                }
 
                 }
 
-                if (halloween == true) {
+                if (halloween == true) { // ====================SPOOKY=================
                 
-                arenaafterlife = true
-                arperks = true
-                argraveyard = true
-                adlavapit = true
-                adgorgeevent = true
-                addarkmarsh = true
-                aderebus = true
-                adspookeyridge = true
-                cpcower = true
-                cpsinshine = true
-                cpfreakyfair = true
-                ctfdevilcross = true
-                ctfhelltrain = true
-                ctfcrasher = true
-                kothduskroof = true
-                kothlaughter = true
-                kothslime = true
-                kothtoxic = true
-                kothsinthetic = true
-                kothmegalo = true
-                kothslasher = true
-                kothmoonshine = true
-                kothhmmbagel = true
-                kothmoldergrove = true
-                kothmapleridge = true
-                kothwall = true
-                kothscarysawmill = true
-                medsandcastle = true
-                pdfarmageddon = true
-                pdcursedcove = true
-                pdcircus = true
-                pdmannsylvania = true
-                pdbottemlesspit = true
-                pdmonsters = true
-                plrbonesaw = true
-                plcorruption = true
-                plterror = true
-                plprecipice = true
-                plghoulpit = true
-                plbrimstone = true
-                plhasslecastle = true
-                plbloodwater = true
-                plchaos = true
-                plgravestone = true
-                plspineyard = true
-                towdynamite = true
-                htfmarshlands = true
-                vshoutburst = true
-                zihl2e1 = true
-                ziwoods = true
-                zimurky = true
-                zisanitarium = true
-                ziatoll = true
-                ziblazehattan = true
+                if (zombieinfection == true) {
 
-                totalmaps = totalmaps + 54
+                    zihl2e1 = true
+                    ziwoods = true
+                    zimurky = true
+                    zisanitarium = true
+                    ziatoll = true
+                    ziblazehattan = true
+
+                    totalmaps = totalmaps + 6
+                }
+
+                if (versussaxtonhale == true) {
+
+                    vshoutburst = true
+
+                    totalmaps = totalmaps + 1
+                }
+
+                if (tugofwar == true) {
+
+                    towdynamite = true
+
+                    totalmaps = totalmaps + 1
+                }
+
+                if (playerdestruction == true) {
+
+                    pdfarmageddon = true
+                    pdcursedcove = true
+                    pdcircus = true
+                    pdmannsylvania = true
+                    pdbottemlesspit = true
+                    pdmonsters = true
+
+                    totalmaps = totalmaps + 6
+                }
+
+                if (payloadrace == true) {
+
+                    plrbonesaw = true
+
+                    totalmaps = totalmaps + 1
+                }
+
+                if (payload == true) {
+
+                    plcorruption = true
+                    plterror = true
+                    plprecipice = true
+                    plghoulpit = true
+                    plbrimstone = true
+                    plhasslecastle = true
+                    plbloodwater = true
+                    plchaos = true
+                    plgravestone = true
+                    plspineyard = true
+
+                    totalmaps = totalmaps + 10
+                }
+
+                if (medieval == true) {
+
+                    medsandcastle = true
+
+                    totalmaps = totalmaps + 1
+                }
+
+                if (kingofthehill == true) {
+
+                    kothduskroof = true
+                    kothlaughter = true
+                    kothslime = true
+                    kothtoxic = true
+                    kothsinthetic = true
+                    kothmegalo = true
+                    kothslasher = true
+                    kothmoonshine = true
+                    kothhmmbagel = true
+                    kothmoldergrove = true
+                    kothmapleridge = true
+                    kothwall = true
+                    kothscarysawmill = true
+
+                    totalmaps = totalmaps + 13
+                }
+
+                if (holdtheflag == true) {
+
+                    htfmarshlands = true
+
+                    totalmaps = totalmaps + 1
+                }
+
+                if (controlpoint == true) {
+
+                    cpcower = true
+                    cpsinshine = true
+                    cpfreakyfair = true
+
+                    totalmaps = totalmaps + 3
+                }
+
+                if (capturetheflag == true) {
+
+                    ctfdevilcross = true
+                    ctfhelltrain = true
+                    ctfcrasher = true
+
+                    totalmaps = totalmaps + 3
+                }
+
+                if (attackdefend == true) {
+
+                    adlavapit = true
+                    adgorgeevent = true
+                    addarkmarsh = true
+                    aderebus = true
+                    adspookeyridge = true
+
+                    totalmaps = totalmaps + 5
+                }
+
+                if (arena == true) {
+
+                    arenaafterlife = true
+                    arperks = true
+                    argraveyard = true
+
+                    totalmaps = totalmaps + 3
+                }
+
 
                 }
 
-                if (christmas == true) {
+                if (christmas == true) { // ====================Wintery=================
 
-                adfrostwatch = true
-                adcoalpit = true
-                adcarrier = true
-                ctfdoublefrost = true
-                ctfenibrut = true
-                ctfsnowfall = true
-                kothkrampus = true
-                pdcringe = true
-                pdgalleria = true
-                pdsnowville = true
-                plrcutyoass = true
-                plchilly = true
-                plwutville = true
-                plpolar = true
-                plfrostcliff = true
-                plrmatterhorn = true
-                vshmaul = true
+                if (versussaxtonhale == true) {
 
-                totalmaps = totalmaps + 17
+                    vshmaul = true
+
+                    totalmaps = totalmaps + 1
+                }
+
+                if (playerdestruction == true) {
+
+                    pdcringe = true
+                    pdgalleria = true
+                    pdsnowville = true
+
+                    totalmaps = totalmaps + 3
+                }
+
+                if (payloadrace == true) {
+
+                    plrcutyoass = true
+                    plrmatterhorn = true
+
+                    totalmaps = totalmaps + 2
+                }
+
+                if (payload == true) {
+
+                    plchilly = true
+                    plwutville = true
+                    plpolar = true
+                    plfrostcliff = true
+
+                    totalmaps = totalmaps + 4
+                }
+
+                if (kingofthehill == true) {
+
+                    kothkrampus = true
+
+                    totalmaps = totalmaps + 1
+                }
+
+                if (capturetheflag == true) {
+
+                    ctfdoublefrost = true
+                    ctfenibrut = true
+                    ctfsnowfall = true
+
+                    totalmaps = totalmaps + 3
+                }
+
+                if (attackdefend == true) {
+
+                    adfrostwatch = true
+                    adcoalpit = true
+                    adcarrier = true
+
+                    totalmaps = totalmaps + 3
+                }
 
                 }
 
