@@ -41,6 +41,18 @@
             border-color: black;
             background-color: tan;
         }
+
+        button {
+                    width: 160px;
+                    border-radius: 50px;
+                    float: center;
+                    margin-right: 10px;
+                    border-color: black;
+                    background-color: green;
+                    color: white;
+                    align-self: center;
+                    font-weight: bold;
+                }
     </style>
 </head>
 
@@ -52,11 +64,47 @@
     <h3>After you have taken a look on these pages you will see how many maps there are.</h3>
 
     <h3>
-        <a href="mapguessing.html">Guess the TF2 Map</a>
+        <a href="info_amount.html">
+        <img class="photo" id="Page_info" onmouseover="pinfobc1()" onmouseleave="pinfobc2()"
+        src="assets/words/main/select_info.png" width="200" height="200">
+        </img>
+        </a>
+        
+        <a href="game_whatmapisit.html">
+        <img class="photo" id="Page_game" onmouseover="pgamebc1()" onmouseleave="pgamebc2()"
+        src="assets/words/main/select_game.png" width="200" height="200">
+        </img>
+        </a>
+
+        <a href="down_files.html">
+        <img class="photo" id="Page_down" onmouseover="pdownbc1()" onmouseleave="pdownbc2()"
+        src="assets/words/main/select_down.png" width="200" height="200">
+        </img>
+        </a>
     </h3>
-    <h3>
-        <a href="info_amount.html">Information on TF2 Maps</a>
-    </h3>
+
+    <script>
+        function pinfobc1() {
+            document.getElementById("Page_info").src = "assets/words/main/select_info_press.png"
+        }
+        function pinfobc2() {
+            document.getElementById("Page_info").src = "assets/words/main/select_info.png"
+        }
+
+        function pgamebc1() {
+            document.getElementById("Page_game").src = "assets/words/main/select_game_press.png"
+        }
+        function pgamebc2() {
+            document.getElementById("Page_game").src = "assets/words/main/select_game.png"
+        }
+
+        function pdownbc1() {
+            document.getElementById("Page_down").src = "assets/words/main/select_down_press.png"
+        }
+        function pdownbc2() {
+            document.getElementById("Page_down").src = "assets/words/main/select_down.png"
+        }
+    </script>
 
 </body>
 
